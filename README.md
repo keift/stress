@@ -2,7 +2,6 @@
   <br/>
   <img src="https://i.ibb.co/vvCkDfjB/unknown.png" width="350px"/>
   <br/>
-  <br/>
 </div>
 
 ## Contents
