@@ -32,7 +32,7 @@ Stress test the specified target with DDoS attack.
 
 Briefly as follows.
 
-```shell
+```bash
 # Make the file executable
 chmod +x ./stress-v1.1--linux-x64
 chmod +x ./stress-v1.1--linux-arm64
@@ -54,7 +54,7 @@ chmod +x ./stress-v1.1--linux-arm64-musl
 
 Briefly as follows.
 
-```shell
+```bash
 # Make the file executable
 chmod +x ./stress-v1.1--macos-arm64
 chmod +x ./stress-v1.1--macos-x64
