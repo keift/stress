@@ -1,6 +1,6 @@
 <div align="center">
   <br/>
-  <img src="https://i.ibb.co/1YhCqdHB/unknown.png" width="350px"/>
+  <img src="https://i.ibb.co/SDYnk5yN/unknown.png" width="350px"/>
   <br/>
 </div>
 
@@ -16,7 +16,7 @@
 
 ## About
 
-Stress test the specified target with DDoS attack.
+Stress test the specified target with DDoS attack. Unauthorized use is not recommended.
 
 ## Installation
 
