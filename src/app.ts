@@ -4,6 +4,7 @@ dayjs.extend(duration);
 import randomua from "random-useragent";
 import kindof from "kind-of";
 import readline from "readline";
+
 import Package from "../package.json";
 
 const rl: readline.Interface = readline.createInterface({
