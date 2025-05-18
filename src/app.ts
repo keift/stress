@@ -253,7 +253,7 @@ const start = async (): Promise<void> => {
   setInterval(() => {
     if (remaining_time === 0) {
       running = false;
-      
+
       clearInterval(intervals["STRESSING"]);
     } else remaining_time--;
   }, 1000);
