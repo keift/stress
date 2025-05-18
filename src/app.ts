@@ -18,38 +18,17 @@ const print = (): void => {
   console.clear();
 
   console.log("\n");
-  console.log(
-    "    \x1b[90m #####   ######   #####    #####    #####    #####",
-    "\x1b[0m"
-  );
-  console.log(
-    "    \x1b[90m##         ##     ##  ##   ##      ##       ##",
-    "\x1b[0m"
-  );
-  console.log(
-    "    \x1b[90m ####      ##     #####    ####     ####     ####",
-    "\x1b[0m"
-  );
-  console.log(
-    "    \x1b[90m    ##     ##     ##  ##   ##          ##       ##",
-    "\x1b[0m"
-  );
-  console.log(
-    "    \x1b[90m#####      ##     ##  ##   #####   #####    #####",
-    "\x1b[0m"
-  );
+  console.log("    \x1b[90m #####   ######   #####    #####    #####    #####", "\x1b[0m");
+  console.log("    \x1b[90m##         ##     ##  ##   ##      ##       ##", "\x1b[0m");
+  console.log("    \x1b[90m ####      ##     #####    ####     ####     ####", "\x1b[0m");
+  console.log("    \x1b[90m    ##     ##     ##  ##   ##          ##       ##", "\x1b[0m");
+  console.log("    \x1b[90m#####      ##     ##  ##   #####   #####    #####", "\x1b[0m");
   console.log("");
-  console.log(
-    `                                                   \x1b[37mv${Package.version}`,
-    "\x1b[0m"
-  );
+  console.log(`                                                   \x1b[37mv${Package.version}`, "\x1b[0m");
   console.log("");
 };
 
-const question = (query: string): Promise<string> =>
-  new Promise((resolve: (value: string | PromiseLike<string>) => void) =>
-    rl.question(query, resolve)
-  );
+const question = (query: string): Promise<string> => new Promise((resolve: (value: string | PromiseLike<string>) => void) => rl.question(query, resolve));
 
 const start = async (): Promise<void> => {
   print();
@@ -82,9 +61,7 @@ const start = async (): Promise<void> => {
 
   console.log(`Target (IP/Domain): ${target}`);
 
-  const ppt_question: string = await question(
-    "PPT (Packets Per Transaction): "
-  );
+  const ppt_question: string = await question("PPT (Packets Per Transaction): ");
 
   print();
 
@@ -129,10 +106,7 @@ const start = async (): Promise<void> => {
     return;
   }
 
-  const duration: number = Math.max(
-    1,
-    Math.min(Number(duration_question), 43200)
-  );
+  const duration: number = Math.max(1, Math.min(Number(duration_question), 43200));
 
   console.log(`Target (IP/Domain): ${target}`);
   console.log(`PPT (Packets Per Transaction): ${ppt}`);
@@ -155,10 +129,7 @@ const start = async (): Promise<void> => {
   console.log(`Duration (s): ${duration}`);
 
   console.log("");
-  console.log(
-    "Status                       \x1b[33mAlmost Ready... ⟳",
-    "\x1b[0m"
-  );
+  console.log("Status                       \x1b[33mAlmost Ready... ⟳", "\x1b[0m");
   console.log("Packets Sent                 \x1b[90m--", "\x1b[0m");
   console.log("Successful Resp.             \x1b[90m--", "\x1b[0m");
   console.log("Unsuccessful Resp.           \x1b[90m--", "\x1b[0m");
@@ -185,10 +156,7 @@ const start = async (): Promise<void> => {
         }
       })
         .then((response: Response) => {
-          if (
-            (response.status >= 200 && response.status < 300) ||
-            (response.status >= 400 && response.status < 500)
-          ) {
+          if ((response.status >= 200 && response.status < 300) || (response.status >= 400 && response.status < 500)) {
             successful_responses++;
           } else unsuccessful_responses++;
         })
@@ -209,38 +177,11 @@ const start = async (): Promise<void> => {
     console.log(`Duration (s): ${duration}`);
 
     console.log("");
-    console.log(
-      `Status                       ${
-        running ? "\x1b[37mRunning ▶" : "\x1b[31mStopped ■"
-      }`,
-      "\x1b[0m"
-    );
-    console.log(
-      `Packets Sent                 ${
-        previous_packets_sent !== packets_sent ? "\x1b[34m" : "\x1b[90m"
-      }${packets_sent} ↑`,
-      "\x1b[0m"
-    );
-    console.log(
-      `Successful Resp.             ${
-        (previous_successful_responses !== successful_responses
-          ? "\x1b[32m"
-          : "\x1b[90m") + successful_responses
-      } ↓`,
-      "\x1b[0m"
-    );
-    console.log(
-      `Unsuccessful Resp.           ${
-        (previous_unsuccessful_responses !== unsuccessful_responses
-          ? "\x1b[31m"
-          : "\x1b[90m") + unsuccessful_responses
-      } ⇣`,
-      "\x1b[0m"
-    );
-    console.log(
-      `Remaining Time               ${(previous_remaining_time !== remaining_time ? "\x1b[33m" : "\x1b[90m") + dayjs.duration(remaining_time, "seconds").format("HH:mm:ss")} ⏱︎`,
-      "\x1b[0m"
-    );
+    console.log(`Status                       ${running ? "\x1b[37mRunning ▶" : "\x1b[31mStopped ■"}`, "\x1b[0m");
+    console.log(`Packets Sent                 ${previous_packets_sent !== packets_sent ? "\x1b[34m" : "\x1b[90m"}${packets_sent} ↑`, "\x1b[0m");
+    console.log(`Successful Resp.             ${previous_successful_responses !== successful_responses ? "\x1b[32m" : "\x1b[90m"}${successful_responses} ↓`, "\x1b[0m");
+    console.log(`Unsuccessful Resp.           ${previous_unsuccessful_responses !== unsuccessful_responses ? "\x1b[31m" : "\x1b[90m"}${unsuccessful_responses} ⇣`, "\x1b[0m");
+    console.log(`Remaining Time               ${previous_remaining_time !== remaining_time ? "\x1b[33m" : "\x1b[90m"}${dayjs.duration(remaining_time, "seconds").format("HH:mm:ss")} ⏱︎`, "\x1b[0m");
 
     console.log("");
 
