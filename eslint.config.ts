@@ -43,6 +43,7 @@ export default [
       "typescript-eslint/consistent-type-exports": ["error", { fixMixedExportsWithInlineTypeSpecifier: true }],
       "typescript-eslint/consistent-type-imports": ["error", { prefer: "type-imports" }],
       "typescript-eslint/explicit-function-return-type": "error",
+      "typescript-eslint/explicit-member-accessibility": ["error", { accessibility: "explicit" }],
       "typescript-eslint/prefer-readonly": "error",
       "typescript-eslint/typedef": [
         "error",
@@ -60,3 +61,4 @@ export default [
     }
   }
 ];
+
