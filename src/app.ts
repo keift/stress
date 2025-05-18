@@ -1,13 +1,15 @@
-import dayjs from "dayjs";
-import duration from "dayjs/plugin/duration";
-dayjs.extend(duration);
-import randomua from "random-useragent";
-import kindof from "kind-of";
-import readline from "readline";
+
+
+import Dayjs from "dayjs";
+import DayjsDuration from "dayjs/plugin/duration";
+Dayjs.extend(DayjsDuration);
+import RandomUA from "random-useragent";
+import Kindof from "kind-of";
+import Readline from "readline";
 
 import Package from "../package.json";
 
-const rl: readline.Interface = readline.createInterface({
+const rl: Readline.Interface = Readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
@@ -51,7 +53,7 @@ const start = async (): Promise<void> => {
     return;
   }
 
-  if (kindof(target) !== "string") {
+  if (Kindof(target) !== "string") {
     console.log("Field target must be a string.");
 
     setTimeout(start, 2500);
@@ -152,7 +154,7 @@ const start = async (): Promise<void> => {
       fetch(`http://${target}?${Math.random()}=${Math.random()}`, {
         method: "GET",
         headers: {
-          "User-Agent": randomua.getRandom()
+          "User-Agent": RandomUA.getRandom()
         }
       })
         .then((response: Response) => {
@@ -181,7 +183,7 @@ const start = async (): Promise<void> => {
     console.log(`Packets Sent                 ${previous_packets_sent !== packets_sent ? "\x1b[34m" : "\x1b[90m"}${packets_sent} ↑`, "\x1b[0m");
     console.log(`Successful Resp.             ${previous_successful_responses !== successful_responses ? "\x1b[32m" : "\x1b[90m"}${successful_responses} ↓`, "\x1b[0m");
     console.log(`Unsuccessful Resp.           ${previous_unsuccessful_responses !== unsuccessful_responses ? "\x1b[31m" : "\x1b[90m"}${unsuccessful_responses} ⇣`, "\x1b[0m");
-    console.log(`Remaining Time               ${previous_remaining_time !== remaining_time ? "\x1b[33m" : "\x1b[90m"}${dayjs.duration(remaining_time, "seconds").format("HH:mm:ss")} ⏱︎`, "\x1b[0m");
+    console.log(`Remaining Time               ${previous_remaining_time !== remaining_time ? "\x1b[33m" : "\x1b[90m"}${Dayjs.duration(remaining_time, "seconds").format("HH:mm:ss")} ⏱︎`, "\x1b[0m");
 
     console.log("");
 
