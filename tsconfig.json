@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "esModuleInterop": true,
+
+    "target": "ES2020",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "lib": ["dom", "ES2020"],
+
+    "typeRoots": ["./types", "./node_modules/@types"]
+  }
+}

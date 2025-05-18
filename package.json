@@ -1,19 +1,30 @@
 {
   "version": "1.1",
   "scripts": {
-    "dev": "bun run --watch ./app.js",
+    "dev": "bun run --watch ./src/app.ts",
+    "test": "bun run lint",
     "compile": "bun run compile:linux-x64 && bun run compile:linux-arm64 && bun run compile:windows-x64 && bun run compile:darwin-x64 && bun run compile:darwin-arm64 && bun run compile:linux-x64-musl && bun run compile:linux-arm64-musl",
-    "compile:linux-x64": "bun build --compile --target=bun-linux-x64 --minify --sourcemap ./app.js --outfile ./builds/stress-v1.1--linux-x64",
-    "compile:linux-arm64": "bun build --compile --target=bun-linux-arm64 --minify --sourcemap ./app.js --outfile ./builds/stress-v1.1--linux-arm64",
-    "compile:windows-x64": "bun build --compile --target=bun-windows-x64 --minify --sourcemap ./app.js --outfile ./builds/stress-v1.1--windows-x64",
-    "compile:darwin-x64": "bun build --compile --target=bun-darwin-x64 --minify --sourcemap ./app.js --outfile ./builds/stress-v1.1--macos-x64",
-    "compile:darwin-arm64": "bun build --compile --target=bun-darwin-arm64 --minify --sourcemap ./app.js --outfile ./builds/stress-v1.1--macos-arm64",
-    "compile:linux-x64-musl": "bun build --compile --target=bun-linux-x64-musl --minify --sourcemap ./app.js --outfile ./builds/stress-v1.1--linux-x64-musl",
-    "compile:linux-arm64-musl": "bun build --compile --target=bun-linux-arm64-musl --minify --sourcemap ./app.js --outfile ./builds/stress-v1.1--linux-arm64-musl"
+    "compile:linux-x64": "bun build --compile --target=bun-linux-x64 --minify --sourcemap ./src/app.ts --outfile ./builds/stress-v1.1--linux-x64",
+    "compile:linux-arm64": "bun build --compile --target=bun-linux-arm64 --minify --sourcemap ./src/app.ts --outfile ./builds/stress-v1.1--linux-arm64",
+    "compile:windows-x64": "bun build --compile --target=bun-windows-x64 --minify --sourcemap ./src/app.ts --outfile ./builds/stress-v1.1--windows-x64",
+    "compile:darwin-x64": "bun build --compile --target=bun-darwin-x64 --minify --sourcemap ./src/app.ts --outfile ./builds/stress-v1.1--macos-x64",
+    "compile:darwin-arm64": "bun build --compile --target=bun-darwin-arm64 --minify --sourcemap ./src/app.ts --outfile ./builds/stress-v1.1--macos-arm64",
+    "compile:linux-x64-musl": "bun build --compile --target=bun-linux-x64-musl --minify --sourcemap ./src/app.ts --outfile ./builds/stress-v1.1--linux-x64-musl",
+    "compile:linux-arm64-musl": "bun build --compile --target=bun-linux-arm64-musl --minify --sourcemap ./src/app.ts --outfile ./builds/stress-v1.1--linux-arm64-musl",
+    "prettier": "prettier --write ./",
+    "lint": "eslint"
   },
   "dependencies": {
+    "@types/bun": "^1.2.13",
+    "@types/kind-of": "^6.0.3",
+    "@types/node": "^22.15.18",
+    "@types/random-useragent": "^0.3.3",
     "dayjs": "^1.11.13",
+    "jiti": "^2.4.2",
     "kind-of": "^6.0.3",
-    "random-useragent": "^0.5.0"
+    "prettier": "^3.5.3",
+    "random-useragent": "^0.5.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.32.1"
   }
 }
