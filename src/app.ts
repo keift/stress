@@ -151,7 +151,7 @@ const start = async (): Promise<void> => {
 
       fetch(`http://${target}?${Math.random()}=${Math.random()}`, {
         method: "GET",
-        headers: {
+        "headers": {
           "User-Agent": RandomUA.getRandom()
         }
       })
@@ -160,7 +160,9 @@ const start = async (): Promise<void> => {
             successful_responses++;
           } else unsuccessful_responses++;
         })
-        .catch(() => unsuccessful_responses++);
+        .catch((
+error: unknown
+) => unsuccessful_responses++);
     }
   });
 
