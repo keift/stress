@@ -160,7 +160,7 @@ const start = async (): Promise<void> => {
             successful_responses++;
           } else unsuccessful_responses++;
         })
-        .catch((error: unknown) => unsuccessful_responses++);
+        .catch(() => unsuccessful_responses++);
     }
   });
 
