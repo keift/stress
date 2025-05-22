@@ -15,7 +15,7 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@types/bun": "^1.2.13",
+    "@types/bun": "^1.2.14",
     "@types/kind-of": "^6.0.3",
     "@types/node": "^22.15.21",
     "@types/random-useragent": "^0.3.3",
