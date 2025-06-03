@@ -1,15 +1,12 @@
-name: Release
+name: Tests
 
 on:
   push:
-    tags:
-      - v*
-
-permissions:
-  contents: write
+    branches:
+      - "**"
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,6 +17,7 @@ jobs:
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
+          registry-url: https://registry.npmjs.org
 
       - name: Install dependencies
         run: bun install
@@ -29,8 +27,3 @@ jobs:
 
       - name: Build it
         run: bun run build
-
-      - name: Update release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: ./builds/**
