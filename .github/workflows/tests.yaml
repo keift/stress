@@ -6,7 +6,7 @@ on:
       - "**"
 
 jobs:
-  test:
+  job:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,7 +23,7 @@ jobs:
         run: bun install
 
       - name: Run tests
-        run: bun run test
+        run: bun run tests
 
       - name: Build it
         run: bun run build

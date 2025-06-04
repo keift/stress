@@ -2,7 +2,7 @@
   "version": "1.1",
   "scripts": {
     "dev": "bun run --watch ./src/main.ts",
-    "test": "bun run lint",
+    "tests": "bun run lint",
     "build": "bun run build:linux-x64 && bun run build:linux-arm64 && bun run build:windows-x64 && bun run build:darwin-x64 && bun run build:darwin-arm64 && bun run build:linux-x64-musl && bun run build:linux-arm64-musl",
     "build:linux-x64": "bun build --compile --target=bun-linux-x64 --minify --sourcemap ./src/main.ts --outfile ./builds/stress-v1.1--linux-x64",
     "build:linux-arm64": "bun build --compile --target=bun-linux-arm64 --minify --sourcemap ./src/main.ts --outfile ./builds/stress-v1.1--linux-arm64",

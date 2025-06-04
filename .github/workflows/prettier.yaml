@@ -6,7 +6,7 @@ on:
       - "**"
 
 jobs:
-  prettier:
+  job:
     runs-on: ubuntu-latest
 
     steps:
