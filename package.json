@@ -12,12 +12,12 @@
     "build:linux-x64-musl": "bun build --compile --target=bun-linux-x64-musl --minify --sourcemap ./src/main.ts --outfile ./builds/stress-v1.1--linux-x64-musl",
     "build:linux-arm64-musl": "bun build --compile --target=bun-linux-arm64-musl --minify --sourcemap ./src/main.ts --outfile ./builds/stress-v1.1--linux-arm64-musl",
     "prettier": "prettier --write ./",
-    "lint": "eslint"
+    "lint": "eslint ./"
   },
   "dependencies": {
-    "@types/bun": "^1.2.15",
+    "@types/bun": "^1.2.16",
     "@types/kind-of": "^6.0.3",
-    "@types/node": "^22.15.30",
+    "@types/node": "^22.15.31",
     "@types/random-useragent": "^0.3.3",
     "dayjs": "^1.11.13",
     "jiti": "^2.4.2",
@@ -25,6 +25,6 @@
     "prettier": "^3.5.3",
     "random-useragent": "^0.5.0",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.33.1"
+    "typescript-eslint": "^8.34.0"
   }
 }
