@@ -45,6 +45,7 @@ export default [
       "typescript-eslint/explicit-function-return-type": "error", // Require explicit return types on functions and class methods.
       "typescript-eslint/explicit-member-accessibility": "error", // Require explicit accessibility modifiers on class properties and methods.
       "typescript-eslint/prefer-readonly": "error", // Require private members to be marked as readonly if they're never modified outside of the constructor.
+      "typescript-eslint/strict-boolean-expressions": "error", // Disallow certain types in boolean expressions.
       "typescript-eslint/typedef": [
         // Require type annotations in certain places.
         "error",
