@@ -16,6 +16,7 @@
   - [Telegram](https://t.me/keiftt)
   - [Twitter](https://x.com/keiftttt)
   - [GitHub](https://github.com/keift)
+- [License](#license)
 
 ## About
 
