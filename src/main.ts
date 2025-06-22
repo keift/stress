@@ -30,7 +30,7 @@ const print = (): void => {
 
 const question = (query: string): Promise<string> => new Promise((resolve: (value: string | PromiseLike<string>) => void) => rl.question(query, resolve));
 
-const start = async (): Promise<void> => {
+const run = async (): Promise<void> => {
   print();
 
   const target_question: string = await question("Target (IP/Domain): ");
@@ -46,7 +46,7 @@ const start = async (): Promise<void> => {
   if (!target) {
     console.log("Field target cannot be left blank.");
 
-    setTimeout(start, 2500);
+    setTimeout(run, 2500);
 
     return;
   }
@@ -54,7 +54,7 @@ const start = async (): Promise<void> => {
   if (Kindof(target) !== "string") {
     console.log("Field target must be a string.");
 
-    setTimeout(start, 2500);
+    setTimeout(run, 2500);
 
     return;
   }
@@ -68,7 +68,7 @@ const start = async (): Promise<void> => {
   if (!ppt_question) {
     console.log("Field ppt cannot be left blank.");
 
-    setTimeout(start, 2500);
+    setTimeout(run, 2500);
 
     return;
   }
@@ -76,7 +76,7 @@ const start = async (): Promise<void> => {
   if (isNaN(Number(ppt_question))) {
     console.log("Field ppt must be a number.");
 
-    setTimeout(start, 2500);
+    setTimeout(run, 2500);
 
     return;
   }
@@ -93,7 +93,7 @@ const start = async (): Promise<void> => {
   if (!duration_question) {
     console.log("Field duration cannot be left blank.");
 
-    setTimeout(start, 2500);
+    setTimeout(run, 2500);
 
     return;
   }
@@ -101,7 +101,7 @@ const start = async (): Promise<void> => {
   if (isNaN(Number(duration_question))) {
     console.log("Field duration must be a number.");
 
-    setTimeout(start, 2500);
+    setTimeout(run, 2500);
 
     return;
   }
@@ -200,4 +200,4 @@ const start = async (): Promise<void> => {
   }, 1000);
 };
 
-start();
+run();
