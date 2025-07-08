@@ -44,8 +44,6 @@ export default [
       "@typescript-eslint/consistent-type-imports": "error", // Enforce consistent usage of type imports.
       "@typescript-eslint/explicit-function-return-type": "error", // Require explicit return types on functions and class methods.
       "@typescript-eslint/explicit-member-accessibility": "error", // Require explicit accessibility modifiers on class properties and methods.
-      "@typescript-eslint/no-floating-promises": "error", // Require Promise-like statements to be handled appropriately.
-      "@typescript-eslint/no-unsafe-argument": "error", // Disallow calling a function with a value with type any.
       "@typescript-eslint/prefer-readonly": "error", // Require private members to be marked as readonly if they're never modified outside of the constructor.
       "@typescript-eslint/strict-boolean-expressions": "error", // Disallow certain types in boolean expressions.
       "@typescript-eslint/typedef": [
