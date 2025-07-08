@@ -200,4 +200,4 @@ const run = async (): Promise<void> => {
   }, 1000);
 };
 
-run();
+await run();
