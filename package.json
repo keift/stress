@@ -17,7 +17,7 @@
   "dependencies": {
     "@types/bun": "^1.2.18",
     "@types/kind-of": "^6.0.3",
-    "@types/node": "^24.0.13",
+    "@types/node": "^24.0.14",
     "@types/random-useragent": "^0.3.3",
     "dayjs": "^1.11.13",
     "jiti": "^2.4.2",
