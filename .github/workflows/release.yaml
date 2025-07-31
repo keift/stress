@@ -30,6 +30,9 @@ jobs:
       - name: Build it
         run: bun run build
 
+      - name: Set permissions on builds file
+        run: chmod -R u+rwX ./builds
+
       - name: Update release
         uses: softprops/action-gh-release@v2
         with:
