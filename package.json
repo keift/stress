@@ -19,7 +19,7 @@
     "@types/kind-of": "^6.0.3",
     "@types/node": "^24.2.1",
     "@types/random-useragent": "^0.3.3",
-    "dayjs": "^1.11.13",
+    "dayjs": "^1.11.18",
     "jiti": "^2.5.1",
     "kind-of": "^6.0.3",
     "prettier": "^3.6.2",
