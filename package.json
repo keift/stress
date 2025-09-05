@@ -15,16 +15,14 @@
     "lint": "eslint ./"
   },
   "dependencies": {
-    "@types/bun": "^1.2.20",
+    "@types/bun": "^1.2.21",
     "@types/kind-of": "^6.0.3",
-    "@types/node": "^24.2.1",
+    "@types/node": "^24.3.1",
     "@types/random-useragent": "^0.3.3",
-    "dayjs": "^1.11.13",
-    "jiti": "^2.5.1",
+    "dayjs": "^1.11.18",
     "kind-of": "^6.0.3",
+    "neatlint": "^1.0.0",
     "prettier": "^3.6.2",
-    "random-useragent": "^0.5.0",
-    "typescript": "^5.9.2",
-    "typescript-eslint": "^8.39.1"
+    "random-useragent": "^0.5.0"
   }
 }
