@@ -184,7 +184,7 @@ const run = async (): Promise<void> => {
     console.log(`Status                       ${running ? "\x1b[37mRunning ▶" : "\x1b[31mStopped ■"}`, "\x1b[0m");
     console.log(`Packets Sent                 ${previous_packets_sent !== packets_sent ? "\x1b[34m" : "\x1b[90m"}${packets_sent.toString()} ↑`, "\x1b[0m");
     console.log(`Successful Resp.             ${previous_successful_responses !== successful_responses ? "\x1b[32m" : "\x1b[90m"}${successful_responses.toString()} ↓`, "\x1b[0m");
-    console.log(`Unsuccessful Resp.           ${previous_unsuccessful_responses !== unsuccessful_responses ? "\x1b[31m" : "\x1b[90m"}${unsuccessful_responses .toString()} ⇣`, "\x1b[0m");
+    console.log(`Unsuccessful Resp.           ${previous_unsuccessful_responses !== unsuccessful_responses ? "\x1b[31m" : "\x1b[90m"}${unsuccessful_responses.toString()} ⇣`, "\x1b[0m");
     console.log(`Remaining Time               ${previous_remaining_time !== remaining_time ? "\x1b[33m" : "\x1b[90m"}${Dayjs.duration(remaining_time, "seconds").format("HH:mm:ss")} ⏱︎`, "\x1b[0m");
 
     console.log("");
