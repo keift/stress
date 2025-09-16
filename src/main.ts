@@ -7,14 +7,14 @@ import Readline from "readline";
 
 import Package from "../package.json";
 
-const rl: Readline.Interface = Readline.createInterface({
+const rl = Readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
 
 const intervals: Record<string, NodeJS.Timeout> = {};
 
-const print = (): void => {
+const print = () => {
   console.clear();
 
   console.log("\n");
@@ -33,10 +33,10 @@ const question = (query: string): Promise<string> =>
     rl.question(query, resolve);
   });
 
-const run = async (): Promise<void> => {
+const run = async () => {
   print();
 
-  const target_question: string = await question("Target (IP/Domain): ");
+  const target_question = await question("Target (IP/Domain): ");
 
   print();
 
@@ -159,7 +159,7 @@ const run = async (): Promise<void> => {
           "User-Agent": RandomUA.getRandom()
         }
       })
-        .then((response: Response) => {
+        .then((response) => {
           if ((response.status >= 200 && response.status < 300) || (response.status >= 400 && response.status < 500)) {
             successful_responses++;
           } else unsuccessful_responses++;
