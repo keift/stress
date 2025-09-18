@@ -3,7 +3,7 @@ name: Prettier
 on:
   push:
     branches:
-      - "**"
+      - '**'
 
 jobs:
   job:

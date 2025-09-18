@@ -1,3 +1,3 @@
-import { Neatlint } from "neatlint";
+import { Neatlint } from 'neatlint';
 
 export default Neatlint();

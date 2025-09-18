@@ -17,11 +17,11 @@
   "dependencies": {
     "@types/bun": "^1.2.22",
     "@types/kind-of": "^6.0.3",
-    "@types/node": "^24.5.0",
+    "@types/node": "^24.5.2",
     "@types/random-useragent": "^0.3.3",
     "dayjs": "^1.11.18",
     "kind-of": "^6.0.3",
-    "neatlint": "^1.1.5",
+    "neatlint": "^1.1.6",
     "prettier": "^3.6.2",
     "random-useragent": "^0.5.0"
   }
