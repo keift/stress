@@ -15,13 +15,13 @@
     "lint": "eslint ./"
   },
   "dependencies": {
-    "@types/bun": "^1.2.22",
+    "@types/bun": "^1.2.23",
     "@types/kind-of": "^6.0.3",
     "@types/node": "^24.5.2",
     "@types/random-useragent": "^0.3.3",
     "dayjs": "^1.11.18",
     "kind-of": "^6.0.3",
-    "neatlint": "^1.1.13",
+    "neatlint": "^1.1.14",
     "prettier": "^3.6.2",
     "random-useragent": "^0.5.0"
   }
