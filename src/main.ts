@@ -12,7 +12,7 @@ const rl = Readline.createInterface({
   output: process.stdout
 });
 
-const intervals: Record<string, NodeJS.Timeout> = {};
+const intervals = new Map<string, NodeJS.Timeout>();
 
 const print = () => {
   console.clear();
@@ -149,7 +149,7 @@ const run = async () => {
   let unsuccessful_responses = 0;
   let remaining_time = duration;
 
-  intervals.STRESSING = setInterval(() => {
+  intervals.set("STRESSING", setInterval(() => {
     for (let i = 0; i < throttling; i++) {
       packets_sent++;
 
@@ -166,7 +166,7 @@ const run = async () => {
         })
         .catch(() => unsuccessful_responses++);
     }
-  });
+  }));
 
   let previous_packets_sent = 0;
   let previous_successful_responses = 0;
@@ -199,7 +199,8 @@ const run = async () => {
     if (remaining_time === 0) {
       running = false;
 
-      clearInterval(intervals.STRESSING);
+      clearInterval(intervals.get("STRESSING"));
+      intervals.delete("STRESSING")
     } else remaining_time--;
   }, 1000);
 };
