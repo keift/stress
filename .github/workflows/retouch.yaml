@@ -1,4 +1,4 @@
-name: Lockfile
+name: Retouch
 
 on:
   push:
@@ -22,8 +22,11 @@ jobs:
       - name: Delete lockfile
         run: rm -rf ./bun.lock
 
-      - name: Recreate lockfile
+      - name: Install dependencies
         run: bun install
+
+      - name: Run Prettier
+        run: bun run prettier
 
       - name: Configure Git
         run: |
@@ -34,7 +37,7 @@ jobs:
         run: |
           if [[ -n $(git status --porcelain) ]]; then
             git add ./
-            git commit -m "✨ chore: lockfile"
+            git commit -m "✨ chore: retouch"
             git push
           else
             echo "No changes."
