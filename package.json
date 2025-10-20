@@ -1,5 +1,5 @@
 {
-  "versionb": "1.1",
+  "version": "1.1",
   "scripts": {
     "start:dev": "bun run --watch ./src/main.ts",
     "tests": "bun run lint",
