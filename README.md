@@ -42,16 +42,16 @@ Briefly as follows.
 
 ```sh-session
 # Make the file executable
-chmod +x ./stress-v1.1--linux-x64
-chmod +x ./stress-v1.1--linux-arm64
-chmod +x ./stress-v1.1--linux-x64-musl
-chmod +x ./stress-v1.1--linux-arm64-musl
+sudo chmod +x ./stress-v1.1--linux-x64
+sudo chmod +x ./stress-v1.1--linux-arm64
+sudo chmod +x ./stress-v1.1--linux-x64-musl
+sudo chmod +x ./stress-v1.1--linux-arm64-musl
 
 # Run Stress
-./stress-v1.1--linux-x64
-./stress-v1.1--linux-arm64
-./stress-v1.1--linux-x64-musl
-./stress-v1.1--linux-arm64-musl
+sudo ./stress-v1.1--linux-x64
+sudo ./stress-v1.1--linux-arm64
+sudo ./stress-v1.1--linux-x64-musl
+sudo ./stress-v1.1--linux-arm64-musl
 ```
 
 ### MacOS
@@ -64,14 +64,14 @@ Briefly as follows.
 
 ```sh-session
 # Make the file executable
-chmod +x ./stress-v1.1--macos-arm64
-chmod +x ./stress-v1.1--macos-x64
-xattr -cr ./stress-v1.1--macos-arm64
-xattr -cr ./stress-v1.1--macos-x64
+sudo chmod +x ./stress-v1.1--macos-arm64
+sudo chmod +x ./stress-v1.1--macos-x64
+sudo xattr -cr ./stress-v1.1--macos-arm64
+sudo xattr -cr ./stress-v1.1--macos-x64
 
 # Run Stress
-./stress-v1.1--macos-arm64
-./stress-v1.1--macos-x64
+sudo ./stress-v1.1--macos-arm64
+sudo ./stress-v1.1--macos-x64
 ```
 
 ## Links
