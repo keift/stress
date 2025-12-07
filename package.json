@@ -20,8 +20,8 @@
     "@types/random-useragent": "^0.3.3",
     "dayjs": "^1.11.19",
     "kind-of": "^6.0.3",
-    "neatlint": "^1.1.26",
-    "prettier": "^3.7.3",
+    "neatlint": "^1.1.27",
+    "prettier": "^3.7.4",
     "random-useragent": "^0.5.0"
   }
 }
