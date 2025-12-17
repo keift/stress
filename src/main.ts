@@ -2,7 +2,7 @@ import Dayjs from 'dayjs';
 import DayjsDuration from 'dayjs/plugin/duration';
 Dayjs.extend(DayjsDuration);
 import RandomUA from 'random-useragent';
-import { typof } from 'typof/src/main';
+import { typof } from 'typof';
 import Readline from 'readline';
 
 import Package from '../package.json';

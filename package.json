@@ -21,6 +21,6 @@
     "neatlint": "^1.2.4",
     "prettier": "^3.7.4",
     "random-useragent": "^0.5.0",
-    "typof": "https://github.com/keift/typof"
+    "typof": "^1.0.0"
   }
 }
