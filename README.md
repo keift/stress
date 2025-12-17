@@ -28,15 +28,35 @@ Stress test the specified target with DDoS attack. Unauthorized use is not recom
 
 - [stress-v1.1--windows-x64.exe](https://github.com/keift/stress/releases/download/v1.1/stress-v1.1--windows-x64.exe)
 
+```shell
+curl -LO https://github.com/keift/stress/releases/download/v1.1/stress-v1.1--windows-x64.exe
+```
+
 ### Linux
 
 - [stress-v1.1--linux-x64](https://github.com/keift/stress/releases/download/v1.1/stress-v1.1--linux-x64)
 
+```shell
+wget https://github.com/keift/stress/releases/download/v1.1/stress-v1.1--linux-x64
+```
+
 - [stress-v1.1--linux-arm64](https://github.com/keift/stress/releases/download/v1.1/stress-v1.1--linux-arm64)
+
+```shell
+wget https://github.com/keift/stress/releases/download/v1.1/stress-v1.1--linux-arm64
+```
 
 - [stress-v1.1--linux-x64-musl](https://github.com/keift/stress/releases/download/v1.1/stress-v1.1--linux-x64-musl)
 
+```shell
+wget https://github.com/keift/stress/releases/download/v1.1/stress-v1.1--linux-x64-musl
+```
+
 - [stress-v1.1--linux-arm64-musl](https://github.com/keift/stress/releases/download/v1.1/stress-v1.1--linux-arm64-musl)
+
+```shell
+wget https://github.com/keift/stress/releases/download/v1.1/stress-v1.1--linux-arm64-musl
+```
 
 Briefly as follows.
 
@@ -58,7 +78,15 @@ sudo ./stress-v1.1--linux-arm64-musl
 
 - [stress-v1.1--macos-arm64](https://github.com/keift/stress/releases/download/v1.1/stress-v1.1--macos-arm64)
 
+```shell
+curl -LO https://github.com/keift/stress/releases/download/v1.1/stress-v1.1--macos-arm64
+```
+
 - [stress-v1.1--macos-x64](https://github.com/keift/stress/releases/download/v1.1/stress-v1.1--macos-x64)
+
+```shell
+curl -LO https://github.com/keift/stress/releases/download/v1.1/stress-v1.1--macos-x64
+```
 
 Briefly as follows.
 
