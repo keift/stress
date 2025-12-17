@@ -2,7 +2,7 @@ import Dayjs from 'dayjs';
 import DayjsDuration from 'dayjs/plugin/duration';
 Dayjs.extend(DayjsDuration);
 import RandomUA from 'random-useragent';
-import Kindof from 'kind-of';
+import { typof } from 'typof/src/main';
 import Readline from 'readline';
 
 import Package from '../package.json';
@@ -54,8 +54,7 @@ const run = async () => {
     return;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  if (Kindof(target) !== 'string') {
+  if (!typof(target).includes('string')) {
     console.log('Field target must be a string.');
 
     setTimeout(() => void run(), 2500);
@@ -77,7 +76,7 @@ const run = async () => {
     return;
   }
 
-  if (isNaN(Number(throttling_question))) {
+  if (!typof(throttling_question).includes('number')) {
     console.log('Field throttling must be a number.');
 
     setTimeout(() => void run(), 2500);
@@ -102,7 +101,7 @@ const run = async () => {
     return;
   }
 
-  if (isNaN(Number(duration_question))) {
+  if (!typof(duration_question).includes('number')) {
     console.log('Field duration must be a number.');
 
     setTimeout(() => void run(), 2500);
