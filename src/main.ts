@@ -76,8 +76,8 @@ const run = async () => {
     return;
   }
 
-  if (!typof(throttling_question).includes('number')) {
-    console.log('Field throttling must be a number.');
+  if (!typof(throttling_question).includes('integer')) {
+    console.log('Field throttling must be a integer.');
 
     setTimeout(() => void run(), 2500);
 
@@ -101,8 +101,8 @@ const run = async () => {
     return;
   }
 
-  if (!typof(duration_question).includes('number')) {
-    console.log('Field duration must be a number.');
+  if (!typof(duration_question).includes('integer')) {
+    console.log('Field duration must be a integer.');
 
     setTimeout(() => void run(), 2500);
 
