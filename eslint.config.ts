@@ -1,3 +1,3 @@
-import { Neatlint } from 'neatlint';
+import { rulint } from 'rulint';
 
-export default Neatlint();
+export default rulint();
