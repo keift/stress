@@ -20,7 +20,7 @@
     "dayjs": "^1.11.19",
     "prettier": "^3.7.4",
     "random-useragent": "^0.5.0",
-    "rulint": "^1.0.2",
+    "rulint": "^1.0.4",
     "typof": "^1.0.11"
   }
 }
