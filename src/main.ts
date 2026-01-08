@@ -3,40 +3,41 @@ import DayjsDuration from 'dayjs/plugin/duration';
 Dayjs.extend(DayjsDuration);
 import RandomUA from 'random-useragent';
 import { typof } from 'typof';
+import { Styles } from '@keift/utils';
 import Readline from 'readline';
 
 import Package from '../package.json';
+
+const intervals = new Map<string, NodeJS.Timeout>();
 
 const rl = Readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
 
-const intervals = new Map<string, NodeJS.Timeout>();
+const question = (query: string) =>
+  new Promise<string>((resolve) => {
+    rl.question(query, resolve);
+  });
 
 const print = () => {
   console.clear();
 
   console.log('\n');
-  console.log('    \x1b[90m #####   ######   #####    #####    #####    #####', '\x1b[0m');
-  console.log('    \x1b[90m##         ##     ##  ##   ##      ##       ##', '\x1b[0m');
-  console.log('    \x1b[90m ####      ##     #####    ####     ####     ####', '\x1b[0m');
-  console.log('    \x1b[90m    ##     ##     ##  ##   ##          ##       ##', '\x1b[0m');
-  console.log('    \x1b[90m#####      ##     ##  ##   #####   #####    #####', '\x1b[0m');
+  console.log(`     ${Styles.fg.gray}#####   ######   #####    #####    #####    #####`, Styles.reset);
+  console.log(`    ${Styles.fg.gray}##         ##     ##  ##   ##      ##       ##`, Styles.reset);
+  console.log(`     ${Styles.fg.gray}####      ##     #####    ####     ####     ####`, Styles.reset);
+  console.log(`        ${Styles.fg.gray}##     ##     ##  ##   ##          ##       ##`, Styles.reset);
+  console.log(`    ${Styles.fg.gray}#####      ##     ##  ##   #####   #####    #####`, Styles.reset);
   console.log('');
-  console.log(`                                                   \x1b[37mv${Package.version}`, '\x1b[0m');
+  console.log(`                                                   ${Styles.fg.white}v${Package.version}`, Styles.reset);
   console.log('');
 };
-
-const question = (query: string): Promise<string> =>
-  new Promise((resolve) => {
-    rl.question(query, resolve);
-  });
 
 const run = async () => {
   print();
 
-  const target_question = await question('Target: ');
+  const target_question = await question(`  ${Styles.fg.blue}Target${Styles.fg.gray}: ${Styles.fg.white}`);
 
   print();
 
@@ -47,7 +48,7 @@ const run = async () => {
     .split('/')[0];
 
   if (!target) {
-    console.log('Field target cannot be left blank.');
+    console.log(`  ${Styles.fg.red}Field target cannot be left blank.`, Styles.reset);
 
     setTimeout(() => void run(), 2500);
 
@@ -55,21 +56,21 @@ const run = async () => {
   }
 
   if (!typof(target).includes('string')) {
-    console.log('Field target must be a string.');
+    console.log(`  ${Styles.fg.red}Field target must be a string.`, Styles.reset);
 
     setTimeout(() => void run(), 2500);
 
     return;
   }
 
-  console.log(`Target: ${target}`);
+  console.log(`  ${Styles.fg.blue}Target${Styles.fg.gray}: ${Styles.fg.white}${target}`, Styles.reset);
 
-  const throttling_question = await question('Throttling: ');
+  const throttling_question = await question(`  ${Styles.fg.blue}Throttling${Styles.fg.gray}: ${Styles.fg.white}`);
 
   print();
 
   if (!throttling_question) {
-    console.log('Field throttling cannot be left blank.');
+    console.log(`  ${Styles.fg.red}Field throttling cannot be left blank.`, Styles.reset);
 
     setTimeout(() => void run(), 2500);
 
@@ -77,7 +78,7 @@ const run = async () => {
   }
 
   if (!typof(throttling_question).includes('integer')) {
-    console.log('Field throttling must be a integer.');
+    console.log(`  ${Styles.fg.red}Field throttling must be a integer.`, Styles.reset);
 
     setTimeout(() => void run(), 2500);
 
@@ -86,15 +87,15 @@ const run = async () => {
 
   const throttling = Math.max(1, Math.min(Number(throttling_question), 100));
 
-  console.log(`Target: ${target}`);
-  console.log(`Throttling: ${throttling.toString()}`);
+  console.log(`  ${Styles.fg.blue}Target${Styles.fg.gray}: ${Styles.fg.white}${target}`, Styles.reset);
+  console.log(`  ${Styles.fg.blue}Throttling${Styles.fg.gray}: ${Styles.fg.white}${String(throttling)}`, Styles.reset);
 
-  const duration_question = await question('Duration (s): ');
+  const duration_question = await question(`  ${Styles.fg.blue}Duration (s)${Styles.fg.gray}: ${Styles.fg.white}`);
 
   print();
 
   if (!duration_question) {
-    console.log('Field duration cannot be left blank.');
+    console.log(`  ${Styles.fg.red}Field duration cannot be left blank.`, Styles.reset);
 
     setTimeout(() => void run(), 2500);
 
@@ -102,7 +103,7 @@ const run = async () => {
   }
 
   if (!typof(duration_question).includes('integer')) {
-    console.log('Field duration must be a integer.');
+    console.log(`  ${Styles.fg.red}Field duration must be a integer.`, Styles.reset);
 
     setTimeout(() => void run(), 2500);
 
@@ -111,32 +112,32 @@ const run = async () => {
 
   const duration = Math.max(1, Math.min(Number(duration_question), 43200));
 
-  console.log(`Target: ${target}`);
-  console.log(`Throttling: ${throttling.toString()}`);
-  console.log(`Duration (s): ${duration.toString()}`);
+  console.log(`  ${Styles.fg.blue}Target${Styles.fg.gray}: ${Styles.fg.white}${target}`, Styles.reset);
+  console.log(`  ${Styles.fg.blue}Throttling${Styles.fg.gray}: ${Styles.fg.white}${String(throttling)}`, Styles.reset);
+  console.log(`  ${Styles.fg.blue}Duration (s)${Styles.fg.gray}: ${Styles.fg.white}${String(duration)}`, Styles.reset);
 
   console.log('');
-  console.log('Status                          \x1b[33mPreparing... ⟳', '\x1b[0m');
-  console.log('Packets Sent                    \x1b[90m--', '\x1b[0m');
-  console.log('Successful Resp.                \x1b[90m--', '\x1b[0m');
-  console.log('Unsuccessful Resp.              \x1b[90m--', '\x1b[0m');
-  console.log('Remaining Time                  \x1b[90m--', '\x1b[0m');
+  console.log(`  ${Styles.fg.magenta}Status                          ${Styles.fg.yellow}Preparing... ⟳`, Styles.reset);
+  console.log(`  ${Styles.fg.magenta}Packets Sent                    ${Styles.fg.gray}--`, Styles.reset);
+  console.log(`  ${Styles.fg.magenta}Successful Resp.                ${Styles.fg.gray}--`, Styles.reset);
+  console.log(`  ${Styles.fg.magenta}Unsuccessful Resp.              ${Styles.fg.gray}--`, Styles.reset);
+  console.log(`  ${Styles.fg.magenta}Remaining Time                  ${Styles.fg.gray}--`, Styles.reset);
   console.log('');
 
   await Bun.sleep(1000);
 
   print();
 
-  console.log(`Target: ${target}`);
-  console.log(`Throttling: ${throttling.toString()}`);
-  console.log(`Duration (s): ${duration.toString()}`);
+  console.log(`  ${Styles.fg.blue}Target${Styles.fg.gray}: ${Styles.fg.white}${target}`, Styles.reset);
+  console.log(`  ${Styles.fg.blue}Throttling${Styles.fg.gray}: ${Styles.fg.white}${String(throttling)}`, Styles.reset);
+  console.log(`  ${Styles.fg.blue}Duration (s)${Styles.fg.gray}: ${Styles.fg.white}${String(duration)}`, Styles.reset);
 
   console.log('');
-  console.log('Status                          \x1b[33mAlmost Ready... ⟳', '\x1b[0m');
-  console.log('Packets Sent                    \x1b[90m--', '\x1b[0m');
-  console.log('Successful Resp.                \x1b[90m--', '\x1b[0m');
-  console.log('Unsuccessful Resp.              \x1b[90m--', '\x1b[0m');
-  console.log('Remaining Time                  \x1b[90m--', '\x1b[0m');
+  console.log(`  ${Styles.fg.magenta}Status                          ${Styles.fg.yellow}Almost Ready... ⟳`, Styles.reset);
+  console.log(`  ${Styles.fg.magenta}Packets Sent                    ${Styles.fg.gray}--`, Styles.reset);
+  console.log(`  ${Styles.fg.magenta}Successful Resp.                ${Styles.fg.gray}--`, Styles.reset);
+  console.log(`  ${Styles.fg.magenta}Unsuccessful Resp.              ${Styles.fg.gray}--`, Styles.reset);
+  console.log(`  ${Styles.fg.magenta}Remaining Time                  ${Styles.fg.gray}--`, Styles.reset);
 
   console.log('');
 
@@ -156,7 +157,7 @@ const run = async () => {
           packets_sent++;
 
           try {
-            const response = await fetch(`http://${target}?${Math.random().toString()}=${Math.random().toString()}`, {
+            const response = await fetch(`http://${target}?${String(Math.random())}=${String(Math.random())}`, {
               method: 'GET',
               headers: {
                 'User-Agent': RandomUA.getRandom()
@@ -182,16 +183,16 @@ const run = async () => {
   setInterval(() => {
     print();
 
-    console.log(`Target: ${target}`);
-    console.log(`Throttling: ${throttling.toString()}`);
-    console.log(`Duration (s): ${duration.toString()}`);
+    console.log(`  ${Styles.fg.blue}Target${Styles.fg.gray}: ${Styles.fg.white}${target}`, Styles.reset);
+    console.log(`  ${Styles.fg.blue}Throttling${Styles.fg.gray}: ${Styles.fg.white}${String(throttling)}`, Styles.reset);
+    console.log(`  ${Styles.fg.blue}Duration (s)${Styles.fg.gray}: ${Styles.fg.white}${String(duration)}`, Styles.reset);
 
     console.log('');
-    console.log(`Status                          ${running ? '\x1b[37mRunning ▶' : '\x1b[31mStopped ■'}`, '\x1b[0m');
-    console.log(`Packets Sent                    ${previous_packets_sent !== packets_sent ? '\x1b[34m' : '\x1b[90m'}${packets_sent.toString()} ↑`, '\x1b[0m');
-    console.log(`Successful Resp.                ${previous_successful_responses !== successful_responses ? '\x1b[32m' : '\x1b[90m'}${successful_responses.toString()} ↓`, '\x1b[0m');
-    console.log(`Unsuccessful Resp.              ${previous_unsuccessful_responses !== unsuccessful_responses ? '\x1b[31m' : '\x1b[90m'}${unsuccessful_responses.toString()} ⇣`, '\x1b[0m');
-    console.log(`Remaining Time                  ${previous_remaining_time !== remaining_time ? '\x1b[33m' : '\x1b[90m'}${Dayjs.duration(remaining_time, 'seconds').format('HH:mm:ss')} ⏱︎`, '\x1b[0m');
+    console.log(`  ${Styles.fg.magenta}Status                          ${running ? `${Styles.fg.white}Running ▶` : `${Styles.fg.red}Stopped ■`}`, Styles.reset);
+    console.log(`  ${Styles.fg.magenta}Packets Sent                    ${previous_packets_sent !== packets_sent ? Styles.fg.blue : Styles.fg.gray}${String(packets_sent)} ↑`, Styles.reset);
+    console.log(`  ${Styles.fg.magenta}Successful Resp.                ${previous_successful_responses !== successful_responses ? Styles.fg.green : Styles.fg.gray}${String(successful_responses)} ↓`, Styles.reset);
+    console.log(`  ${Styles.fg.magenta}Unsuccessful Resp.              ${previous_unsuccessful_responses !== unsuccessful_responses ? Styles.fg.red : Styles.fg.gray}${String(unsuccessful_responses)} ⇣`, Styles.reset);
+    console.log(`  ${Styles.fg.magenta}Remaining Time                  ${previous_remaining_time !== remaining_time ? Styles.fg.yellow : Styles.fg.gray}${Dayjs.duration(remaining_time, 'seconds').format('HH:mm:ss')} ⏱︎`, Styles.reset);
 
     console.log('');
 
