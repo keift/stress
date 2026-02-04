@@ -21,7 +21,7 @@
     "dayjs": "^1.11.19",
     "prettier": "^3.8.0",
     "random-useragent": "^0.5.0",
-    "rulint": "^1.0.5",
+    "rulint": "^1.0.6",
     "typof": "^1.0.13"
   }
 }
