@@ -1,6 +1,5 @@
 import Dayjs from 'dayjs';
 import DayjsDuration from 'dayjs/plugin/duration';
-Dayjs.extend(DayjsDuration);
 import RandomUA from 'random-useragent';
 import { typof } from 'typof';
 import { Styles } from '@keift/utils';
@@ -9,6 +8,8 @@ import Readline from 'readline';
 import Package from '../package.json';
 
 const intervals = new Map<string, NodeJS.Timeout>();
+
+Dayjs.extend(DayjsDuration);
 
 const rl = Readline.createInterface({
   input: process.stdin,
@@ -24,13 +25,13 @@ const print = () => {
   console.clear();
 
   console.log('\n');
-  console.log(`     ${Styles.fg.gray}#####   ######   #####    #####    #####    #####`, Styles.reset);
-  console.log(`    ${Styles.fg.gray}##         ##     ##  ##   ##      ##       ##`, Styles.reset);
-  console.log(`     ${Styles.fg.gray}####      ##     #####    ####     ####     ####`, Styles.reset);
-  console.log(`        ${Styles.fg.gray}##     ##     ##  ##   ##          ##       ##`, Styles.reset);
-  console.log(`    ${Styles.fg.gray}#####      ##     ##  ##   #####   #####    #####`, Styles.reset);
+  console.log(`   ${Styles.fg.gray}#####   ######   #####    #####    #####    #####`, Styles.reset);
+  console.log(`  ${Styles.fg.gray}##         ##     ##  ##   ##      ##       ##`, Styles.reset);
+  console.log(`   ${Styles.fg.gray}####      ##     #####    ####     ####     ####`, Styles.reset);
+  console.log(`      ${Styles.fg.gray}##     ##     ##  ##   ##          ##       ##`, Styles.reset);
+  console.log(`  ${Styles.fg.gray}#####      ##     ##  ##   #####   #####    #####`, Styles.reset);
   console.log('');
-  console.log(`                                                   ${Styles.fg.white}v${Package.version}`, Styles.reset);
+  console.log(`                                                 ${Styles.fg.white}v${Package.version}`, Styles.reset);
   console.log('');
 };
 
@@ -207,6 +208,7 @@ const run = async () => {
       running = false;
 
       clearInterval(intervals.get('STRESSING'));
+
       intervals.delete('STRESSING');
     } else remaining_time--;
   }, 1000);
