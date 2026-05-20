@@ -28,7 +28,7 @@ jobs:
         run: bun run build
 
       - name: Create release note
-        run: sed -n "/^## ${{ github.ref_name }}/{p; :loop; n; /^## /q; p; b loop}" CHANGELOG.md > RELEASE_NOTE.md
+        run: sed -n "/^## ${{ github.ref_name }}/,/^## /{ /^## /d; p; }" CHANGELOG.md | sed -z "s/^[[:space:]]*//; s/[[:space:]]*\$//" > RELEASE_NOTE.md
 
       - name: Set permissions on builds file
         run: chmod -R u+rwX ./builds
