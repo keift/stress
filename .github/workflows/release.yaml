@@ -1,8 +1,9 @@
 name: Release
 
 on:
-  release:
-    types: [created]
+  push:
+    tags:
+      - 'v*'
 
 permissions:
   contents: write
@@ -27,10 +28,15 @@ jobs:
       - name: Build it
         run: bun run build
 
+      - name: Create release note
+        run: sed -n "/^## /{p; :loop; n; /^## /q; p; b loop}" CHANGELOG.md > RELEASE_NOTE.md
+
       - name: Set permissions on builds file
         run: chmod -R u+rwX ./builds
 
-      - name: Update release
+      - name: Create release
         uses: softprops/action-gh-release@v2
         with:
+          generate_release_notes: true
+          body_path: ./RELEASE_NOTE.md
           files: ./builds/**
