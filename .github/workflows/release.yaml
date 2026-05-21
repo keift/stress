@@ -27,8 +27,8 @@ jobs:
       - name: Build it
         run: bun run build
 
-      - name: Create release note
-        run: sed -n "/^## /{ :loop; n; /^## /q; p; b loop; }" CHANGELOG.md | sed -z "s/^[[:space:]]*//; s/[[:space:]]*\$//" > RELEASE_NOTE.md
+      - name: Create release notes
+        run: sed -n "/^## /{ :loop; n; /^## /q; p; b loop; }" ./CHANGELOG.md | sed -z "s/^[[:space:]]*//; s/[[:space:]]*\$//" > ./RELEASE_NOTES.md
 
       - name: Set permissions on builds file
         run: chmod -R u+rwX ./builds
@@ -37,5 +37,5 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           name: ${{ github.ref_name }}
-          body_path: ./RELEASE_NOTE.md
+          body_path: ./RELEASE_NOTES.md
           files: ./builds/**
