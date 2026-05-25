@@ -1,17 +1,17 @@
-import Dayjs from 'dayjs';
-import DayjsDuration from 'dayjs/plugin/duration';
-import RandomUA from 'random-useragent';
+import dayjs from 'dayjs';
+import dayjs_duration from 'dayjs/plugin/duration';
+import random_ua from 'random-useragent';
 import { typof } from 'typof';
-import { Styles } from '@keift/utils';
-import Readline from 'readline';
+import { styles } from '@keift/utils';
+import readline from 'readline';
 
-import Package from '../package.json';
+import _package from '../package.json';
 
 const intervals = new Map<string, NodeJS.Timeout>();
 
-Dayjs.extend(DayjsDuration);
+dayjs.extend(dayjs_duration);
 
-const rl = Readline.createInterface({
+const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
@@ -25,20 +25,20 @@ const print = () => {
   console.clear();
 
   console.log('\n');
-  console.log(`   ${Styles.fg.gray}#####   ######   #####    #####    #####    #####`, Styles.reset);
-  console.log(`  ${Styles.fg.gray}##         ##     ##  ##   ##      ##       ##`, Styles.reset);
-  console.log(`   ${Styles.fg.gray}####      ##     #####    ####     ####     ####`, Styles.reset);
-  console.log(`      ${Styles.fg.gray}##     ##     ##  ##   ##          ##       ##`, Styles.reset);
-  console.log(`  ${Styles.fg.gray}#####      ##     ##  ##   #####   #####    #####`, Styles.reset);
+  console.log(`   ${styles.fg.gray}#####   ######   #####    #####    #####    #####`, styles.reset);
+  console.log(`  ${styles.fg.gray}##         ##     ##  ##   ##      ##       ##`, styles.reset);
+  console.log(`   ${styles.fg.gray}####      ##     #####    ####     ####     ####`, styles.reset);
+  console.log(`      ${styles.fg.gray}##     ##     ##  ##   ##          ##       ##`, styles.reset);
+  console.log(`  ${styles.fg.gray}#####      ##     ##  ##   #####   #####    #####`, styles.reset);
   console.log('');
-  console.log(`                                                 ${Styles.fg.white}v${Package.version}`, Styles.reset);
+  console.log(`                                                 ${styles.fg.white}v${_package.version}`, styles.reset);
   console.log('');
 };
 
 const run = async () => {
   print();
 
-  const target_question = await question(`  ${Styles.fg.blue}Target${Styles.fg.gray}: ${Styles.fg.white}`);
+  const target_question = await question(`  ${styles.fg.blue}Target${styles.fg.gray}: ${styles.fg.white}`);
 
   print();
 
@@ -49,7 +49,7 @@ const run = async () => {
     .split('/')[0];
 
   if (!target) {
-    console.log(`  ${Styles.fg.red}Field target cannot be left blank.`, Styles.reset);
+    console.log(`  ${styles.fg.red}Field target cannot be left blank.`, styles.reset);
 
     setTimeout(() => void run(), 2500);
 
@@ -57,21 +57,21 @@ const run = async () => {
   }
 
   if (!typof(target).includes('string')) {
-    console.log(`  ${Styles.fg.red}Field target must be a string.`, Styles.reset);
+    console.log(`  ${styles.fg.red}Field target must be a string.`, styles.reset);
 
     setTimeout(() => void run(), 2500);
 
     return;
   }
 
-  console.log(`  ${Styles.fg.blue}Target${Styles.fg.gray}: ${Styles.fg.white}${target}`, Styles.reset);
+  console.log(`  ${styles.fg.blue}Target${styles.fg.gray}: ${styles.fg.white}${target}`, styles.reset);
 
-  const throttling_question = await question(`  ${Styles.fg.blue}Throttling${Styles.fg.gray}: ${Styles.fg.white}`);
+  const throttling_question = await question(`  ${styles.fg.blue}Throttling${styles.fg.gray}: ${styles.fg.white}`);
 
   print();
 
   if (!throttling_question) {
-    console.log(`  ${Styles.fg.red}Field throttling cannot be left blank.`, Styles.reset);
+    console.log(`  ${styles.fg.red}Field throttling cannot be left blank.`, styles.reset);
 
     setTimeout(() => void run(), 2500);
 
@@ -79,7 +79,7 @@ const run = async () => {
   }
 
   if (!typof(throttling_question).includes('integer')) {
-    console.log(`  ${Styles.fg.red}Field throttling must be a integer.`, Styles.reset);
+    console.log(`  ${styles.fg.red}Field throttling must be a integer.`, styles.reset);
 
     setTimeout(() => void run(), 2500);
 
@@ -88,15 +88,15 @@ const run = async () => {
 
   const throttling = Math.max(1, Math.min(Number(throttling_question), 100));
 
-  console.log(`  ${Styles.fg.blue}Target${Styles.fg.gray}: ${Styles.fg.white}${target}`, Styles.reset);
-  console.log(`  ${Styles.fg.blue}Throttling${Styles.fg.gray}: ${Styles.fg.white}${String(throttling)}`, Styles.reset);
+  console.log(`  ${styles.fg.blue}Target${styles.fg.gray}: ${styles.fg.white}${target}`, styles.reset);
+  console.log(`  ${styles.fg.blue}Throttling${styles.fg.gray}: ${styles.fg.white}${String(throttling)}`, styles.reset);
 
-  const duration_question = await question(`  ${Styles.fg.blue}Duration (s)${Styles.fg.gray}: ${Styles.fg.white}`);
+  const duration_question = await question(`  ${styles.fg.blue}Duration (s)${styles.fg.gray}: ${styles.fg.white}`);
 
   print();
 
   if (!duration_question) {
-    console.log(`  ${Styles.fg.red}Field duration cannot be left blank.`, Styles.reset);
+    console.log(`  ${styles.fg.red}Field duration cannot be left blank.`, styles.reset);
 
     setTimeout(() => void run(), 2500);
 
@@ -104,7 +104,7 @@ const run = async () => {
   }
 
   if (!typof(duration_question).includes('integer')) {
-    console.log(`  ${Styles.fg.red}Field duration must be a integer.`, Styles.reset);
+    console.log(`  ${styles.fg.red}Field duration must be a integer.`, styles.reset);
 
     setTimeout(() => void run(), 2500);
 
@@ -113,32 +113,32 @@ const run = async () => {
 
   const duration = Math.max(1, Math.min(Number(duration_question), 43200));
 
-  console.log(`  ${Styles.fg.blue}Target${Styles.fg.gray}: ${Styles.fg.white}${target}`, Styles.reset);
-  console.log(`  ${Styles.fg.blue}Throttling${Styles.fg.gray}: ${Styles.fg.white}${String(throttling)}`, Styles.reset);
-  console.log(`  ${Styles.fg.blue}Duration (s)${Styles.fg.gray}: ${Styles.fg.white}${String(duration)}`, Styles.reset);
+  console.log(`  ${styles.fg.blue}Target${styles.fg.gray}: ${styles.fg.white}${target}`, styles.reset);
+  console.log(`  ${styles.fg.blue}Throttling${styles.fg.gray}: ${styles.fg.white}${String(throttling)}`, styles.reset);
+  console.log(`  ${styles.fg.blue}Duration (s)${styles.fg.gray}: ${styles.fg.white}${String(duration)}`, styles.reset);
 
   console.log('');
-  console.log(`  ${Styles.fg.magenta}Status                          ${Styles.fg.yellow}Preparing... ⟳`, Styles.reset);
-  console.log(`  ${Styles.fg.magenta}Packets Sent                    ${Styles.fg.gray}--`, Styles.reset);
-  console.log(`  ${Styles.fg.magenta}Successful Resp.                ${Styles.fg.gray}--`, Styles.reset);
-  console.log(`  ${Styles.fg.magenta}Unsuccessful Resp.              ${Styles.fg.gray}--`, Styles.reset);
-  console.log(`  ${Styles.fg.magenta}Remaining Time                  ${Styles.fg.gray}--`, Styles.reset);
+  console.log(`  ${styles.fg.magenta}Status                          ${styles.fg.yellow}Preparing... ⟳`, styles.reset);
+  console.log(`  ${styles.fg.magenta}Packets Sent                    ${styles.fg.gray}--`, styles.reset);
+  console.log(`  ${styles.fg.magenta}Successful Resp.                ${styles.fg.gray}--`, styles.reset);
+  console.log(`  ${styles.fg.magenta}Unsuccessful Resp.              ${styles.fg.gray}--`, styles.reset);
+  console.log(`  ${styles.fg.magenta}Remaining Time                  ${styles.fg.gray}--`, styles.reset);
   console.log('');
 
   await Bun.sleep(1000);
 
   print();
 
-  console.log(`  ${Styles.fg.blue}Target${Styles.fg.gray}: ${Styles.fg.white}${target}`, Styles.reset);
-  console.log(`  ${Styles.fg.blue}Throttling${Styles.fg.gray}: ${Styles.fg.white}${String(throttling)}`, Styles.reset);
-  console.log(`  ${Styles.fg.blue}Duration (s)${Styles.fg.gray}: ${Styles.fg.white}${String(duration)}`, Styles.reset);
+  console.log(`  ${styles.fg.blue}Target${styles.fg.gray}: ${styles.fg.white}${target}`, styles.reset);
+  console.log(`  ${styles.fg.blue}Throttling${styles.fg.gray}: ${styles.fg.white}${String(throttling)}`, styles.reset);
+  console.log(`  ${styles.fg.blue}Duration (s)${styles.fg.gray}: ${styles.fg.white}${String(duration)}`, styles.reset);
 
   console.log('');
-  console.log(`  ${Styles.fg.magenta}Status                          ${Styles.fg.yellow}Almost Ready... ⟳`, Styles.reset);
-  console.log(`  ${Styles.fg.magenta}Packets Sent                    ${Styles.fg.gray}--`, Styles.reset);
-  console.log(`  ${Styles.fg.magenta}Successful Resp.                ${Styles.fg.gray}--`, Styles.reset);
-  console.log(`  ${Styles.fg.magenta}Unsuccessful Resp.              ${Styles.fg.gray}--`, Styles.reset);
-  console.log(`  ${Styles.fg.magenta}Remaining Time                  ${Styles.fg.gray}--`, Styles.reset);
+  console.log(`  ${styles.fg.magenta}Status                          ${styles.fg.yellow}Almost Ready... ⟳`, styles.reset);
+  console.log(`  ${styles.fg.magenta}Packets Sent                    ${styles.fg.gray}--`, styles.reset);
+  console.log(`  ${styles.fg.magenta}Successful Resp.                ${styles.fg.gray}--`, styles.reset);
+  console.log(`  ${styles.fg.magenta}Unsuccessful Resp.              ${styles.fg.gray}--`, styles.reset);
+  console.log(`  ${styles.fg.magenta}Remaining Time                  ${styles.fg.gray}--`, styles.reset);
 
   console.log('');
 
@@ -161,7 +161,7 @@ const run = async () => {
             const response = await fetch(`http://${target}?${String(Math.random())}=${String(Math.random())}`, {
               method: 'GET',
               headers: {
-                'User-Agent': RandomUA.getRandom()
+                'User-Agent': random_ua.getRandom()
               }
             });
 
@@ -184,16 +184,16 @@ const run = async () => {
   setInterval(() => {
     print();
 
-    console.log(`  ${Styles.fg.blue}Target${Styles.fg.gray}: ${Styles.fg.white}${target}`, Styles.reset);
-    console.log(`  ${Styles.fg.blue}Throttling${Styles.fg.gray}: ${Styles.fg.white}${String(throttling)}`, Styles.reset);
-    console.log(`  ${Styles.fg.blue}Duration (s)${Styles.fg.gray}: ${Styles.fg.white}${String(duration)}`, Styles.reset);
+    console.log(`  ${styles.fg.blue}Target${styles.fg.gray}: ${styles.fg.white}${target}`, styles.reset);
+    console.log(`  ${styles.fg.blue}Throttling${styles.fg.gray}: ${styles.fg.white}${String(throttling)}`, styles.reset);
+    console.log(`  ${styles.fg.blue}Duration (s)${styles.fg.gray}: ${styles.fg.white}${String(duration)}`, styles.reset);
 
     console.log('');
-    console.log(`  ${Styles.fg.magenta}Status                          ${running ? `${Styles.fg.white}Running ▶` : `${Styles.fg.red}Stopped ■`}`, Styles.reset);
-    console.log(`  ${Styles.fg.magenta}Packets Sent                    ${previous_packets_sent !== packets_sent ? Styles.fg.blue : Styles.fg.gray}${String(packets_sent)} ↑`, Styles.reset);
-    console.log(`  ${Styles.fg.magenta}Successful Resp.                ${previous_successful_responses !== successful_responses ? Styles.fg.green : Styles.fg.gray}${String(successful_responses)} ↓`, Styles.reset);
-    console.log(`  ${Styles.fg.magenta}Unsuccessful Resp.              ${previous_unsuccessful_responses !== unsuccessful_responses ? Styles.fg.red : Styles.fg.gray}${String(unsuccessful_responses)} ⇣`, Styles.reset);
-    console.log(`  ${Styles.fg.magenta}Remaining Time                  ${previous_remaining_time !== remaining_time ? Styles.fg.yellow : Styles.fg.gray}${Dayjs.duration(remaining_time, 'seconds').format('HH:mm:ss')} ⏱︎`, Styles.reset);
+    console.log(`  ${styles.fg.magenta}Status                          ${running ? `${styles.fg.white}Running ▶` : `${styles.fg.red}Stopped ■`}`, styles.reset);
+    console.log(`  ${styles.fg.magenta}Packets Sent                    ${previous_packets_sent !== packets_sent ? styles.fg.blue : styles.fg.gray}${String(packets_sent)} ↑`, styles.reset);
+    console.log(`  ${styles.fg.magenta}Successful Resp.                ${previous_successful_responses !== successful_responses ? styles.fg.green : styles.fg.gray}${String(successful_responses)} ↓`, styles.reset);
+    console.log(`  ${styles.fg.magenta}Unsuccessful Resp.              ${previous_unsuccessful_responses !== unsuccessful_responses ? styles.fg.red : styles.fg.gray}${String(unsuccessful_responses)} ⇣`, styles.reset);
+    console.log(`  ${styles.fg.magenta}Remaining Time                  ${previous_remaining_time !== remaining_time ? styles.fg.yellow : styles.fg.gray}${dayjs.duration(remaining_time, 'seconds').format('HH:mm:ss')} ⏱︎`, styles.reset);
 
     console.log('');
 
