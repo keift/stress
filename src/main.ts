@@ -167,7 +167,9 @@ const run = async () => {
 
             if ((response.status >= 200 && response.status < 300) || (response.status >= 400 && response.status < 500)) {
               successful_responses++;
-            } else unsuccessful_responses++;
+            } else {
+              unsuccessful_responses++;
+            }
           } catch {
             unsuccessful_responses++;
           }
@@ -210,7 +212,9 @@ const run = async () => {
       clearInterval(intervals.get('STRESSING'));
 
       intervals.delete('STRESSING');
-    } else remaining_time--;
+    } else {
+      remaining_time--;
+    }
   }, 1000);
 };
 
