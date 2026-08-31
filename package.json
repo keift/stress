@@ -12,8 +12,8 @@
     "build:linux-x64-musl": "bun build --compile --minify --target bun-linux-x64-musl --outfile ./builds/stress-v1.1--linux-x64-musl ./src/main.ts",
     "build:linux-arm64": "bun build --compile --minify --target bun-linux-arm64 --outfile ./builds/stress-v1.1--linux-arm64 ./src/main.ts",
     "build:linux-arm64-musl": "bun build --compile --minify --target bun-linux-arm64-musl --outfile ./builds/stress-v1.1--linux-arm64-musl ./src/main.ts",
-    "prettier": "prettier --write ./",
-    "lint": "eslint ./"
+    "lint": "eslint ./",
+    "prettier": "prettier --write ./"
   },
   "dependencies": {
     "@keift/utils": "^1.0.10",
