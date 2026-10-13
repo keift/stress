@@ -1,8 +1,8 @@
 {
   "version": "1.1",
   "scripts": {
-    "start:dev": "bun run --watch ./src/main.ts",
-    "tests": "bun run lint",
+    "start:dev": "bun run --check --watch ./src/main.ts",
+    "tests": "bun check && bun run lint",
     "retouch": "bun run prettier",
     "build": "bun run build:windows-x64 && bun run build:darwin-arm64 && bun run build:darwin-x64 && bun run build:linux-x64 && bun run build:linux-x64-musl && bun run build:linux-arm64 && bun run build:linux-arm64-musl",
     "build:windows-x64": "bun build --compile --minify --target bun-windows-x64 --outfile ./builds/stress-v1.1--windows-x64 ./src/main.ts",
@@ -16,13 +16,13 @@
     "prettier": "prettier --write ./"
   },
   "dependencies": {
-    "@keift/utils": "^1.0.11",
-    "@types/bun": "^1.4.0",
+    "@keift/utils": "^1.0.12",
+    "@types/bun": "^1.4.3",
     "@types/random-useragent": "^0.3.3",
     "dayjs": "^1.11.23",
-    "prettier": "^3.9.6",
+    "prettier": "^3.9.10",
     "random-useragent": "^0.5.0",
-    "rulint": "^1.1.16",
-    "typof": "^1.1.3"
+    "rulint": "^1.1.17",
+    "typof": "^1.1.4"
   }
 }
