@@ -7,8 +7,6 @@ import readline from 'readline';
 
 import _package from '../package.json';
 
-const intervals = new Map<string, NodeJS.Timeout>();
-
 dayjs.extend(dayjs_duration);
 
 const rl = readline.createInterface({
@@ -51,7 +49,9 @@ const run = async () => {
   if (!target) {
     console.log(`  ${styles.fg.red}Field target cannot be left blank.`, styles.reset);
 
-    setTimeout(() => void run(), 2500);
+    await Bun.sleep(2500);
+
+    void run();
 
     return;
   }
@@ -59,7 +59,9 @@ const run = async () => {
   if (!typof(target).includes('string')) {
     console.log(`  ${styles.fg.red}Field target must be a string.`, styles.reset);
 
-    setTimeout(() => void run(), 2500);
+    await Bun.sleep(2500);
+
+    void run();
 
     return;
   }
@@ -73,7 +75,9 @@ const run = async () => {
   if (!throttling_question) {
     console.log(`  ${styles.fg.red}Field throttling cannot be left blank.`, styles.reset);
 
-    setTimeout(() => void run(), 2500);
+    await Bun.sleep(2500);
+
+    void run();
 
     return;
   }
@@ -81,7 +85,9 @@ const run = async () => {
   if (!typof(throttling_question).includes('integer')) {
     console.log(`  ${styles.fg.red}Field throttling must be a integer.`, styles.reset);
 
-    setTimeout(() => void run(), 2500);
+    await Bun.sleep(2500);
+
+    void run();
 
     return;
   }
@@ -98,7 +104,9 @@ const run = async () => {
   if (!duration_question) {
     console.log(`  ${styles.fg.red}Field duration cannot be left blank.`, styles.reset);
 
-    setTimeout(() => void run(), 2500);
+    await Bun.sleep(2500);
+
+    void run();
 
     return;
   }
@@ -106,7 +114,9 @@ const run = async () => {
   if (!typof(duration_question).includes('integer')) {
     console.log(`  ${styles.fg.red}Field duration must be a integer.`, styles.reset);
 
-    setTimeout(() => void run(), 2500);
+    await Bun.sleep(2500);
+
+    void run();
 
     return;
   }
@@ -150,33 +160,30 @@ const run = async () => {
   let unsuccessful_responses = 0;
   let remaining_time = duration;
 
-  intervals.set(
-    'STRESSING',
-    setInterval(() => {
-      void (async () => {
-        for (let i = 0; i < throttling; i++) {
-          packets_sent++;
+  const stressing = setInterval(() => {
+    void (async () => {
+      for (let i = 0; i < throttling; i++) {
+        packets_sent++;
 
-          try {
-            const response = await fetch(`http://${target}?${String(Math.random())}=${String(Math.random())}`, {
-              method: 'GET',
-              headers: {
-                'User-Agent': random_ua.getRandom()
-              }
-            });
-
-            if ((response.status >= 200 && response.status < 300) || (response.status >= 400 && response.status < 500)) {
-              successful_responses++;
-            } else {
-              unsuccessful_responses++;
+        try {
+          const response = await fetch(`http://${target}?${String(Math.random())}=${String(Math.random())}`, {
+            method: 'GET',
+            headers: {
+              'User-Agent': random_ua.getRandom()
             }
-          } catch {
+          });
+
+          if ((response.status >= 200 && response.status < 300) || (response.status >= 400 && response.status < 500)) {
+            successful_responses++;
+          } else {
             unsuccessful_responses++;
           }
+        } catch {
+          unsuccessful_responses++;
         }
-      })();
-    })
-  );
+      }
+    })();
+  });
 
   let previous_packets_sent = 0;
   let previous_successful_responses = 0;
@@ -209,9 +216,7 @@ const run = async () => {
     if (remaining_time === 0) {
       running = false;
 
-      clearInterval(intervals.get('STRESSING'));
-
-      intervals.delete('STRESSING');
+      clearInterval(stressing);
     } else {
       remaining_time--;
     }
