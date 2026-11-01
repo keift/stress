@@ -24,21 +24,21 @@ const question = (query: string) =>
 const print = () => {
   console.clear();
 
-  console.log('\n');
-  console.log(`   ${styles.fg.gray}#####   ######   #####    #####    #####    #####`, styles.reset);
-  console.log(`  ${styles.fg.gray}##         ##     ##  ##   ##      ##       ##`, styles.reset);
-  console.log(`   ${styles.fg.gray}####      ##     #####    ####     ####     ####`, styles.reset);
-  console.log(`      ${styles.fg.gray}##     ##     ##  ##   ##          ##       ##`, styles.reset);
-  console.log(`  ${styles.fg.gray}#####      ##     ##  ##   #####   #####    #####`, styles.reset);
   console.log('');
-  console.log(`                                             ${styles.fg.white}v${_package.version}`, styles.reset);
+  console.log(`   ${styles.fg.cyan}#####   ######   #####    #####    #####    #####`, styles.reset);
+  console.log(`  ${styles.fg.cyan}##         ##     ##  ##   ##      ##       ##`, styles.reset);
+  console.log(`   ${styles.fg.cyan}####      ##     #####    ####     ####     ####`, styles.reset);
+  console.log(`      ${styles.fg.cyan}##     ##     ##  ##   ##          ##       ##`, styles.reset);
+  console.log(`  ${styles.fg.cyan}#####      ##     ##  ##   #####   #####    #####`, styles.reset);
+  console.log('');
+  console.log(`                                      ${styles.fg.blue}Keift  ${styles.fg.gray}v${_package.version}`, styles.reset);
   console.log('');
 };
 
 const run = async () => {
   print();
 
-  const target_question = await question(`  ${styles.fg.blue}Target${styles.fg.gray}: ${styles.fg.white}`);
+  const target_question = await question(`  ${styles.fg.white}Target: ${styles.fg.green}`);
 
   print();
 
@@ -64,9 +64,9 @@ const run = async () => {
     return;
   }
 
-  console.log(`  ${styles.fg.blue}Target${styles.fg.gray}: ${styles.fg.white}${target}`, styles.reset);
+  console.log(`  ${styles.fg.white}Target: ${styles.fg.green}${target}`, styles.reset);
 
-  const throttling_question = await question(`  ${styles.fg.blue}Throttling${styles.fg.gray}: ${styles.fg.white}`);
+  const throttling_question = await question(`  ${styles.fg.white}Throttling: ${styles.fg.green}`);
 
   print();
 
@@ -88,10 +88,10 @@ const run = async () => {
 
   const throttling = Math.max(1, Math.min(Number(throttling_question), 100));
 
-  console.log(`  ${styles.fg.blue}Target${styles.fg.gray}: ${styles.fg.white}${target}`, styles.reset);
-  console.log(`  ${styles.fg.blue}Throttling${styles.fg.gray}: ${styles.fg.white}${String(throttling)}`, styles.reset);
+  console.log(`  ${styles.fg.white}Target: ${styles.fg.green}${target}`, styles.reset);
+  console.log(`  ${styles.fg.white}Throttling: ${styles.fg.green}${String(throttling)}`, styles.reset);
 
-  const duration_question = await question(`  ${styles.fg.blue}Duration (s)${styles.fg.gray}: ${styles.fg.white}`);
+  const duration_question = await question(`  ${styles.fg.white}Duration (s): ${styles.fg.green}`);
 
   print();
 
@@ -113,32 +113,32 @@ const run = async () => {
 
   const duration = Math.max(1, Math.min(Number(duration_question), 43200));
 
-  console.log(`  ${styles.fg.blue}Target${styles.fg.gray}: ${styles.fg.white}${target}`, styles.reset);
-  console.log(`  ${styles.fg.blue}Throttling${styles.fg.gray}: ${styles.fg.white}${String(throttling)}`, styles.reset);
-  console.log(`  ${styles.fg.blue}Duration (s)${styles.fg.gray}: ${styles.fg.white}${String(duration)}`, styles.reset);
+  console.log(`  ${styles.fg.white}Target: ${styles.fg.green}${target}`, styles.reset);
+  console.log(`  ${styles.fg.white}Throttling: ${styles.fg.green}${String(throttling)}`, styles.reset);
+  console.log(`  ${styles.fg.white}Duration (s): ${styles.fg.green}${String(duration)}`, styles.reset);
 
   console.log('');
-  console.log(`  ${styles.fg.magenta}Status                          ${styles.fg.yellow}Preparing... ⟳`, styles.reset);
-  console.log(`  ${styles.fg.magenta}Packets Sent                    ${styles.fg.gray}--`, styles.reset);
-  console.log(`  ${styles.fg.magenta}Successful Resp.                ${styles.fg.gray}--`, styles.reset);
-  console.log(`  ${styles.fg.magenta}Unsuccessful Resp.              ${styles.fg.gray}--`, styles.reset);
-  console.log(`  ${styles.fg.magenta}Remaining Time                  ${styles.fg.gray}--`, styles.reset);
+  console.log(`  ${styles.fg.white}Status                              ${styles.fg.yellow}Preparing... ⟳`, styles.reset);
+  console.log(`  ${styles.fg.white}Packets Sent                        ${styles.fg.gray}--`, styles.reset);
+  console.log(`  ${styles.fg.white}Successful Resp.                    ${styles.fg.gray}--`, styles.reset);
+  console.log(`  ${styles.fg.white}Unsuccessful Resp.                  ${styles.fg.gray}--`, styles.reset);
+  console.log(`  ${styles.fg.white}Remaining Time                      ${styles.fg.gray}--`, styles.reset);
   console.log('');
 
   await Bun.sleep(1000);
 
   print();
 
-  console.log(`  ${styles.fg.blue}Target${styles.fg.gray}: ${styles.fg.white}${target}`, styles.reset);
-  console.log(`  ${styles.fg.blue}Throttling${styles.fg.gray}: ${styles.fg.white}${String(throttling)}`, styles.reset);
-  console.log(`  ${styles.fg.blue}Duration (s)${styles.fg.gray}: ${styles.fg.white}${String(duration)}`, styles.reset);
+  console.log(`  ${styles.fg.white}Target: ${styles.fg.green}${target}`, styles.reset);
+  console.log(`  ${styles.fg.white}Throttling: ${styles.fg.green}${String(throttling)}`, styles.reset);
+  console.log(`  ${styles.fg.white}Duration (s): ${styles.fg.green}${String(duration)}`, styles.reset);
 
   console.log('');
-  console.log(`  ${styles.fg.magenta}Status                          ${styles.fg.yellow}Almost Ready... ⟳`, styles.reset);
-  console.log(`  ${styles.fg.magenta}Packets Sent                    ${styles.fg.gray}--`, styles.reset);
-  console.log(`  ${styles.fg.magenta}Successful Resp.                ${styles.fg.gray}--`, styles.reset);
-  console.log(`  ${styles.fg.magenta}Unsuccessful Resp.              ${styles.fg.gray}--`, styles.reset);
-  console.log(`  ${styles.fg.magenta}Remaining Time                  ${styles.fg.gray}--`, styles.reset);
+  console.log(`  ${styles.fg.white}Status                              ${styles.fg.yellow}Almost Ready... ⟳`, styles.reset);
+  console.log(`  ${styles.fg.white}Packets Sent                        ${styles.fg.gray}--`, styles.reset);
+  console.log(`  ${styles.fg.white}Successful Resp.                    ${styles.fg.gray}--`, styles.reset);
+  console.log(`  ${styles.fg.white}Unsuccessful Resp.                  ${styles.fg.gray}--`, styles.reset);
+  console.log(`  ${styles.fg.white}Remaining Time                      ${styles.fg.gray}--`, styles.reset);
 
   console.log('');
 
@@ -186,16 +186,16 @@ const run = async () => {
   setInterval(() => {
     print();
 
-    console.log(`  ${styles.fg.blue}Target${styles.fg.gray}: ${styles.fg.white}${target}`, styles.reset);
-    console.log(`  ${styles.fg.blue}Throttling${styles.fg.gray}: ${styles.fg.white}${String(throttling)}`, styles.reset);
-    console.log(`  ${styles.fg.blue}Duration (s)${styles.fg.gray}: ${styles.fg.white}${String(duration)}`, styles.reset);
+    console.log(`  ${styles.fg.white}Target: ${styles.fg.green}${target}`, styles.reset);
+    console.log(`  ${styles.fg.white}Throttling: ${styles.fg.green}${String(throttling)}`, styles.reset);
+    console.log(`  ${styles.fg.white}Duration (s): ${styles.fg.green}${String(duration)}`, styles.reset);
 
     console.log('');
-    console.log(`  ${styles.fg.magenta}Status                          ${running ? `${styles.fg.white}Running ▶` : `${styles.fg.red}Stopped ■`}`, styles.reset);
-    console.log(`  ${styles.fg.magenta}Packets Sent                    ${previous_packets_sent !== packets_sent ? styles.fg.blue : styles.fg.gray}${String(packets_sent)} ↑`, styles.reset);
-    console.log(`  ${styles.fg.magenta}Successful Resp.                ${previous_successful_responses !== successful_responses ? styles.fg.green : styles.fg.gray}${String(successful_responses)} ↓`, styles.reset);
-    console.log(`  ${styles.fg.magenta}Unsuccessful Resp.              ${previous_unsuccessful_responses !== unsuccessful_responses ? styles.fg.red : styles.fg.gray}${String(unsuccessful_responses)} ⇣`, styles.reset);
-    console.log(`  ${styles.fg.magenta}Remaining Time                  ${previous_remaining_time !== remaining_time ? styles.fg.yellow : styles.fg.gray}${dayjs.duration(remaining_time, 'seconds').format('HH:mm:ss')} ⏱︎`, styles.reset);
+    console.log(`  ${styles.fg.white}Status                              ${running ? `${styles.fg.green}Running ▶` : `${styles.fg.red}Stopped ■`}`, styles.reset);
+    console.log(`  ${styles.fg.white}Packets Sent                        ${previous_packets_sent !== packets_sent ? styles.fg.blue : styles.fg.gray}${packets_sent.toLocaleString('en-US')} ↑`, styles.reset);
+    console.log(`  ${styles.fg.white}Successful Resp.                    ${previous_successful_responses !== successful_responses ? styles.fg.green : styles.fg.gray}${successful_responses.toLocaleString('en-US')} ↓`, styles.reset);
+    console.log(`  ${styles.fg.white}Unsuccessful Resp.                  ${previous_unsuccessful_responses !== unsuccessful_responses ? styles.fg.red : styles.fg.gray}${unsuccessful_responses.toLocaleString('en-US')} ⇣`, styles.reset);
+    console.log(`  ${styles.fg.white}Remaining Time                      ${previous_remaining_time !== remaining_time ? styles.fg.yellow : styles.fg.gray}${dayjs.duration(remaining_time, 'seconds').format('HH:mm:ss')} ⏱︎`, styles.reset);
 
     console.log('');
 
