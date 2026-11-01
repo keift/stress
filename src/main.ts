@@ -31,7 +31,7 @@ const print = () => {
   console.log(`      ${styles.fg.gray}##     ##     ##  ##   ##          ##       ##`, styles.reset);
   console.log(`  ${styles.fg.gray}#####      ##     ##  ##   #####   #####    #####`, styles.reset);
   console.log('');
-  console.log(`                                                 ${styles.fg.white}v${_package.version}`, styles.reset);
+  console.log(`                                             ${styles.fg.white}v${_package.version}`, styles.reset);
   console.log('');
 };
 
