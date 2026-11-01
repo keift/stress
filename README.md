@@ -26,24 +26,24 @@ Stress test the specified target with DDoS attack. Unauthorized use is not recom
 
 ### Windows
 
-- [stress-windows-x64.exe](github.com/keift/stress/releases/latest/download/stress-windows-x64.exe)
+- [stress-windows-x64.exe](https://github.com/keift/stress/releases/latest/download/stress-windows-x64.exe)
 
 ```shell
-curl -LO github.com/keift/stress/releases/latest/download/stress-windows-x64.exe
+curl -LO https://github.com/keift/stress/releases/latest/download/stress-windows-x64.exe
 ```
 
 ### MacOS
 
-- [stress-macos-arm64](github.com/keift/stress/releases/latest/download/stress-macos-arm64)
+- [stress-macos-arm64](https://github.com/keift/stress/releases/latest/download/stress-macos-arm64)
 
 ```shell
-curl -LO github.com/keift/stress/releases/latest/download/stress-macos-arm64
+curl -LO https://github.com/keift/stress/releases/latest/download/stress-macos-arm64
 ```
 
-- [stress-macos-x64](github.com/keift/stress/releases/latest/download/stress-macos-x64)
+- [stress-macos-x64](https://github.com/keift/stress/releases/latest/download/stress-macos-x64)
 
 ```shell
-curl -LO github.com/keift/stress/releases/latest/download/stress-macos-x64
+curl -LO https://github.com/keift/stress/releases/latest/download/stress-macos-x64
 ```
 
 Briefly as follows.
@@ -62,28 +62,28 @@ sudo ./stress-macos-x64
 
 ### Linux
 
-- [stress-linux-x64](github.com/keift/stress/releases/latest/download/stress-linux-x64)
+- [stress-linux-x64](https://github.com/keift/stress/releases/latest/download/stress-linux-x64)
 
 ```shell
-wget github.com/keift/stress/releases/latest/download/stress-linux-x64
+wget https://github.com/keift/stress/releases/latest/download/stress-linux-x64
 ```
 
-- [stress-linux-x64-musl](github.com/keift/stress/releases/latest/download/stress-linux-x64-musl)
+- [stress-linux-x64-musl](https://github.com/keift/stress/releases/latest/download/stress-linux-x64-musl)
 
 ```shell
-wget github.com/keift/stress/releases/latest/download/stress-linux-x64-musl
+wget https://github.com/keift/stress/releases/latest/download/stress-linux-x64-musl
 ```
 
-- [stress-linux-arm64](github.com/keift/stress/releases/latest/download/stress-linux-arm64)
+- [stress-linux-arm64](https://github.com/keift/stress/releases/latest/download/stress-linux-arm64)
 
 ```shell
-wget github.com/keift/stress/releases/latest/download/stress-linux-arm64
+wget https://github.com/keift/stress/releases/latest/download/stress-linux-arm64
 ```
 
-- [stress-linux-arm64-musl](github.com/keift/stress/releases/latest/download/stress-linux-arm64-musl)
+- [stress-linux-arm64-musl](https://github.com/keift/stress/releases/latest/download/stress-linux-arm64-musl)
 
 ```shell
-wget github.com/keift/stress/releases/latest/download/stress-linux-arm64-musl
+wget https://github.com/keift/stress/releases/latest/download/stress-linux-arm64-musl
 ```
 
 Briefly as follows.
