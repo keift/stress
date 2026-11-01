@@ -28,30 +28,30 @@ curl -LO https://github.com/keift/stress/releases/latest/download/stress-windows
 
 ### MacOS
 
-- [stress-macos-arm64](https://github.com/keift/stress/releases/latest/download/stress-macos-arm64)
+- [stress-darwin-arm64](https://github.com/keift/stress/releases/latest/download/stress-darwin-arm64)
 
 ```shell
-curl -LO https://github.com/keift/stress/releases/latest/download/stress-macos-arm64
+curl -LO https://github.com/keift/stress/releases/latest/download/stress-darwin-arm64
 ```
 
-- [stress-macos-x64](https://github.com/keift/stress/releases/latest/download/stress-macos-x64)
+- [stress-darwin-x64](https://github.com/keift/stress/releases/latest/download/stress-darwin-x64)
 
 ```shell
-curl -LO https://github.com/keift/stress/releases/latest/download/stress-macos-x64
+curl -LO https://github.com/keift/stress/releases/latest/download/stress-darwin-x64
 ```
 
 Briefly as follows.
 
 ```shell
 # Make the file executable
-sudo chmod +x ./stress-macos-arm64
-sudo chmod +x ./stress-macos-x64
-sudo xattr -cr ./stress-macos-arm64
-sudo xattr -cr ./stress-macos-x64
+sudo chmod +x ./stress-darwin-arm64
+sudo chmod +x ./stress-darwin-x64
+sudo xattr -cr ./stress-darwin-arm64
+sudo xattr -cr ./stress-darwin-x64
 
 # Run Stress
-sudo ./stress-macos-arm64
-sudo ./stress-macos-x64
+sudo ./stress-darwin-arm64
+sudo ./stress-darwin-x64
 ```
 
 ### Linux
